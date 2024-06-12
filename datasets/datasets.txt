@@ -1,3 +1,4 @@
 DNOPEN23.csv - arquivo com os registros de nascimento
 cnes_estabelecimentos.zip - estabelecimentos de saúde
 CBO.csv - A Classificação Brasileira de Ocupações
+df_municipios - Dataset agrupado por: ano_mes, regiao, uf e municipio
