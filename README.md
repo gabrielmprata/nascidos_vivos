@@ -13,7 +13,7 @@ Sistema de Informações sobre Nascidos Vivos (SINASC)
 
 ### Índice 
 
-* [Demo App](#demo_app)
+* [🖥️ Demo App](#demo_app)
 * [Status do Projeto](#status-do-Projeto)
 * [Funcionalidades e Demonstração da Aplicação](#funcionalidades-e-demonstração-da-aplicação)
 * [Acesso ao Projeto](#acesso-ao-projeto)
@@ -22,7 +22,7 @@ Sistema de Informações sobre Nascidos Vivos (SINASC)
 * [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras)
 * [Licença](#licença)
 * [Conclusão](#conclusão)
-
+<br><br><br><br><br><br>
 ## 🖥️ Demo App
 
 ## Status do Projeto
