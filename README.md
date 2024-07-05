@@ -36,3 +36,13 @@ No Brasil, o Sistema de Informação sobre Nascidos Vivos (Sinasc) tem a finalid
 >
 
 # **<font color=#85d338> 2. Coleta de Dados**
+>
+**2.1 Nascidos Vivos**
+>
+As informações dos Nascidos Vivos, estão no sítio de dados abertos do OpenDataSus, no link abaixo:
+<br>
+<p align="left"><img align="left" width="204" height="62" src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/b694a34c-eb8f-4498-9129-0a29a98492a5"></p>
+<br>
+<p align="left">https://opendatasus.saude.gov.br/dataset/sistema-de-informacao-sobre-nascidos-vivos-sinasc</p>
+
+
