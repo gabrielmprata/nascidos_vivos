@@ -96,3 +96,17 @@ Bom, no histórico deste estudo, desde o ano 2000, nascem mais meninos do que me
 >
 <img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/7364d00a-3ea5-48b5-b493-085cf90889cb" alt="Top"  height="270">
 
+**Histórico pela idade das mães**
+>
+Outra informação importante, é a quantidade de nascimentos por faixa etáriae da mãe.
+>
+Esse dado é utilizado em estudos relacionados com o comportamento reprodutivo das mulheres, permitindo analisar as transformações demográficas que estão ocorrendo no Brasil.
+>
+Ao longo do período analisado, vemos uma tendência de crescimento relativo a mães com idade entre 40 e 44 anos.
+>
+E uma redução no nascimento por mães jovens, entre 15 e 19 anos.
+>
+E precisamos comemorar a redução na faixa etaria entre 10 e 14 anos, pois vida sexual abaixo de 14 anos é considerada estupro de vunerável. Mesmo que a relação seja consentida, perante a nossa lei é um abuso sexual.
+>
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/de3ddc7f-fc14-4692-b642-cefa6ad97bcd" alt="Top"  height="270">
+
