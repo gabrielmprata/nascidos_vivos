@@ -119,3 +119,19 @@ A região Nordeste foi a que mais apresentou retração, seguida do sudeste, com
 Nesse período, somente a região Norte registrou em 2020 um aumento de registros de nascimento, 2,54% e em 2023, o Centro-Oeste teve um pequeno aumento de 0,76%.
 >
 O Sudeste mesmo com queda, continua sendo a região com mais registros de nascimento no Brasil.
+>
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/7619c6c4-7a86-40a2-ab36-75ad0a1787b6" alt="Top"  height="350">
+
+**Como os brasileiros chegaram ao mundo em 2023**
+>
+Em 2023, chegaram ao mundo **2.532.050** brasileiros!
+>
+Representando uma média mensal de 211 mil nascidos vivos.
+>
+Março foi o mês com mais nascimentos, 234.022, seguido por Maio, com 230.858
+>
+Na outra ponta, o mês de Novembro foi o que teve menos nascimentos, com 190.052.
+>
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/6eba2dad-3c80-448d-8d09-d80272e90539" alt="Top"  height="350">
+
+ **Nascidos-vivos por dia da semana e hora**
