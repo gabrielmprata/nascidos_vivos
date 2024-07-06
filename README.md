@@ -94,5 +94,5 @@ Afinal, no Brasil nascem mais meninos ou meninas?
 >
 Bom, no histórico deste estudo, desde o ano 2000, nascem mais meninos do que meninas.
 >
-<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/7364d00a-3ea5-48b5-b493-085cf90889cb" alt="Top"  height="390">
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/7364d00a-3ea5-48b5-b493-085cf90889cb" alt="Top"  height="270">
 
