@@ -148,3 +148,5 @@ As cesárias praticamente dominam esse periodo, enquanto que o parto vaginal man
 **Em 2023, nasceram 288 crianças por hora, ou 4 por minuto, ou 6932 por dia.**
 >
 <img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/5f7e6d3a-9bac-4f7e-86fc-69e4b0a66b56" alt="Top"  height="350">
+
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/19bd5752-ff3c-40ae-93d8-ae7843f1b06f" alt="Top"  height="350">
