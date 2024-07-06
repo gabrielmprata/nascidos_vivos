@@ -135,3 +135,16 @@ Na outra ponta, o mês de Novembro foi o que teve menos nascimentos, com 190.052
 <img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/6eba2dad-3c80-448d-8d09-d80272e90539" alt="Top"  height="350">
 
  **Nascidos-vivos por dia da semana e hora**
+>
+Nascem mais crianças no início da semana, esse número cai nos finais de semana, por conta das cesárias, que geralmente são agendadas em dia úteis.
+>
+Os partos vaginais seguem a mesma tendência durante todos os dias da semana.
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/9b06979b-38b9-42b7-adeb-6df9905431b0" alt="Top"  height="350">
+
+Entre as 8 e as 11 horas da manhã e entre 14 e 17 horas da tarde, são os periodos em que ocorrem mais nascimentos.
+>
+As cesárias praticamente dominam esse periodo, enquanto que o parto vaginal mantem uma mesma constancia ao longo do dia.
+>
+**Em 2023, nasceram 288 crianças por hora, ou 4 por minuto, ou 6932 por dia.**
+>
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/5f7e6d3a-9bac-4f7e-86fc-69e4b0a66b56" alt="Top"  height="350">
