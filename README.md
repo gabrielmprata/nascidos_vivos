@@ -110,3 +110,12 @@ E precisamos comemorar a redução na faixa etaria entre 10 e 14 anos, pois vida
 >
 <img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/de3ddc7f-fc14-4692-b642-cefa6ad97bcd" alt="Top"  height="270">
 
+**Evolução das regiões e dos estados**
+>
+Nos últimos cinco anos, todas regiões também seguiram a tendência de queda.
+>
+A região Nordeste foi a que mais apresentou retração, seguida do sudeste, com -16,35% e -15,88% respectivamente.
+>
+Nesse período, somente a região Norte registrou em 2020 um aumento de registros de nascimento, 2,54% e em 2023, o Centro-Oeste teve um pequeno aumento de 0,76%.
+>
+O Sudeste mesmo com queda, continua sendo a região com mais registros de nascimento no Brasil.
