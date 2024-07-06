@@ -65,10 +65,6 @@ from ibge.localidades import *
 >
 [![Colab Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1mulsenF2L_Vjm-yDFTv0t2o74Mhqx49L)
 >
-<a href="https://colab.research.google.com/drive/1mulsenF2L_Vjm-yDFTv0t2o74Mhqx49L" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg"/></a>
-
-
->
 Esta é a etapa mais demorada e trabalhosa do projeto de ciência de dados, e estima-se que consuma pelo menos 70% do tempo total do projeto.
 >
 Após coletar e analisar os dados na etapa anterior, é necessário limpar, transformar e apresentar melhor os seus dados, a fim de obter, na próxima etapa, os melhores resultados possíveis nos algoritmos de machine learning ou simplesmente apresentar dados mais confiáveis para os clientes em soluções de
@@ -84,5 +80,5 @@ Principais técnicas utilizadas:
 >
 **Tratamendo de dados faltantes (missing):** Identificamos e, em seguida, tratamos com um valor adequado. Não foi necessario a exclusão desses registros.
 >
-# **<font color=#85d338> 4. Apresentação dos resultados**
+## **<font color=#85d338> 4. Apresentação dos resultados**
 >
