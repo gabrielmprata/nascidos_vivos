@@ -31,18 +31,32 @@ O pré-natal e a atenção ao parto são importantes estratégias para prevenir 
 No Brasil, o Sistema de Informação sobre Nascidos Vivos (Sinasc) tem a finalidade de gerar indicadores sobre pré-natal, assistência ao parto e perfil epidemiológico dos nascidos vivos.
 
 <br><br>
-
-# **<font color=#85d338> 1. Definição do problema**
+###
+## **<font color=#85d338> 1. Definição do problema**
 >
-
-# **<font color=#85d338> 2. Coleta de Dados**
+###
+## **<font color=#85d338> 2. Coleta de Dados**
 >
 **2.1 Nascidos Vivos**
 >
-As informações dos Nascidos Vivos, estão no sítio de dados abertos do OpenDataSus, no link abaixo:
-<br>
-<p align="left"><img align="left" width="204" height="62" src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/b694a34c-eb8f-4498-9129-0a29a98492a5"></p>
-<br>
-<p align="left">https://opendatasus.saude.gov.br/dataset/sistema-de-informacao-sobre-nascidos-vivos-sinasc</p>
+<p align="left"><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/b694a34c-eb8f-4498-9129-0a29a98492a5"></img>As informações dos Nascidos Vivos, estão no sítio de dados abertos do OpenDataSus:</p>
+>
+> Link: https://opendatasus.saude.gov.br/dataset/sistema-de-informacao-sobre-nascidos-vivos-sinasc
 
+>
+**2.2.1 CNES**
+>
+Dataset auxiliar, com as informações dos estabelecimentos de saúde.
+>
+> Link: https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/CNES/cnes_estabelecimentos.zip
+>
+**2.2.2 Municípios IBGE API**
+>
+```
+pip install ibge
+```
+>
+```
+from ibge.localidades import *
+```
 
