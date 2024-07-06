@@ -89,5 +89,10 @@ No ano de 2023 o Brasil registrou 2,53 milhões de nascimentos, com uma queda de
 O Brasil registra a quinta queda consecutiva, desde 2019.
 >
 <img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/0fca5553-b3d4-49cf-b267-f47cfa596217" alt="Top"  height="400">
-<br></br>
+
+Afinal, no Brasil nascem mais meninos ou meninas?
+>
+Bom, no histórico deste estudo, desde o ano 2000, nascem mais meninos do que meninas.
+>
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/7364d00a-3ea5-48b5-b493-085cf90889cb" alt="Top"  height="390">
 
