@@ -84,7 +84,10 @@ Principais técnicas utilizadas:
 >
 O pré-natal e a atenção ao parto são importantes estratégias para prevenir ou reduzir o risco de morbimortalidade para a gestante e para a criança. No Brasil, o Sistema de Informação sobre Nascidos Vivos (Sinasc) tem a finalidade de gerar indicadores sobre pré-natal, assistência ao parto e perfil epidemiológico dos nascidos vivos.
 >
-No ano de 2023 o Brasil registrou 2,53 milhões de nascimento, com uma queda de 1,17% em comparação com 2022, chegando ao menor patamar desde 1977.
+No ano de 2023 o Brasil registrou 2,53 milhões de nascimentos, com uma queda de 1,17% em comparação com 2022, chegando ao menor patamar desde 1977.
 >
 O Brasil registra a quinta queda consecutiva, desde 2019.
 >
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/0fca5553-b3d4-49cf-b267-f47cfa596217" alt="Top"  height="400">
+<br></br>
+
