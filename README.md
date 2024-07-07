@@ -154,3 +154,20 @@ As cesárias praticamente dominam esse periodo, enquanto que o parto vaginal man
 **Mapa do Brasil**
 >
 <img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/30d2aa66-8ab4-4597-9bf3-f00e8cc9eda2" alt="Top"  height="350">
+
+O estado com o maior número de nascimentos foi **São Paulo**, com 505.331, representando quse 20% dos nascimentos no Brasil.
+>
+Em São Paulo nascem 118% a mais que Minas Gerais, que é o segundo estado com mais nascimentos.
+>
+|uf|Nascidos|Percentual|ranking|
+|--|--------|----------|-------|
+|SP|505331|19.96|1|
+|MG|232270|9.17|2|
+|RJ|175934|6.95|3|
+|BA|165239|6.53|4|
+|PR|140002|5.53|5|
+|PA|123806|4.89|6|
+|RS|120893|4.77|7|
+|PE|116416|4.6|8|
+|CE|111388|4.4|9|
+|SC|96359|3.81|10|
