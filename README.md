@@ -171,3 +171,14 @@ Em São Paulo nascem 118% a mais que Minas Gerais, que é o segundo estado com m
 |PE|116416|4.6|8|
 |CE|111388|4.4|9|
 |SC|96359|3.81|10|
+
+**Por Região**
+
+<table border="1">
+    <tr>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/d591be81-52b7-4604-ac78-781201f29951" alt="Top"  height="300"></td>
+        <td> </td>
+        
+
+    </tr>
+</table>
