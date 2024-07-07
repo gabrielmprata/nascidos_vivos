@@ -14,7 +14,7 @@ Sistema de Informações sobre Nascidos Vivos (SINASC)
 ## 🖥️ Demo App
 
 # :radio_button: Objetivo 
-Criar um simples Dashboard em **Python** e **Streamlit**, para mostrar caractéristicas do nascimento, destacando caractéristicas das mães, dos recém-nascidos, distribuição geográfica, socioeconômicas.
+Criar um simples Dashboard em **Python** e **Streamlit**, para mostrar caractéristicas do nascimento, destacando caractéristicas das mães, dos recém-nascidos, distribuição geográficas e socioeconômicas.
 
 Com a analise dos dados, podemos fornecer informações para o planejamento e avaliação das políticas de saúde, auxiliando na tomada de decisões.
 <br><br>
