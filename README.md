@@ -193,5 +193,21 @@ No Brasil em 2023 nasceram 1,29 milhões de meninos(51,2%) e 1,23 milhões de me
 
 <img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/27b9e0be-90dc-4e15-9727-4a66608fdc87" alt="Top"  height="300">
 
-Nas regiões, teos o mesmo comportamento na proporção de nascimento por sexo
+Nas regiões, temos o mesmo comportamento na proporção de nascimento por sexo.
+
+**Nascidos Vivos segundo local de nascimento**
+
+<table border="1">
+    <tr>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/69ed9ae2-6c12-4e98-9a3f-e332fba5fc80" alt="Top"  height="200"></td>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/49fc25b8-2d5a-417e-a603-92d8f9125576" alt="Top"  height="300"> </td>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/4c6af08e-e375-44d0-9e1d-223d13d06a7d" alt="Top"  height="200"> </td>
+    </tr>
+</table>
+
+A maioria dos nascimentos segue sendo em Hospitais, cerca de 98%, mas ainda há uma quantidade consideravel de nascimentos em domicílios, cerca de 15 mil.
+>
+Os hospitais de gestão Municipal, são os que mais realizam partos, 1.62 milhões, representando 65% do total.
+>
+Outro dado importante é a quantidade de nascimentos em aldeias indíginas, cerca de 1.779 no ano de 2023.
 
