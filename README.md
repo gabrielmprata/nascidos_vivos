@@ -190,3 +190,8 @@ A região sudeste é a que concentra o maior número de nascidos vivos, 38%, seg
 No Brasil em 2023 nasceram 1,29 milhões de meninos(51,2%) e 1,23 milhões de meninas(48,8%).
 
 **Distribuição nascidos vivos de acordo com o sexo e por região**
+
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/27b9e0be-90dc-4e15-9727-4a66608fdc87" alt="Top"  height="300">
+
+Nas regiões, teos o mesmo comportamento na proporção de nascimento por sexo
+
