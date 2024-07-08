@@ -182,3 +182,11 @@ Em São Paulo nascem 118% a mais que Minas Gerais, que é o segundo estado com m
 </table>
 
 A região sudeste é a que concentra o maior número de nascidos vivos, 38%, seguida do Nordeste com 28%.
+
+**Nascidos Vivos segundo sexo**
+>
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/87fab485-760a-44b8-a758-8cd2f5de9ba5" alt="Top"  height="200">
+
+No Brasil em 2023 nasceram 1,29 milhões de meninos(51,2%) e 1,23 milhões de meninas(48,8%).
+
+**Distribuição nascidos vivos de acordo com o sexo e por região**
