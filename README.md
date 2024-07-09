@@ -230,4 +230,17 @@ A região Sudeste registra 44,1% dos nascidos vivos com anomalias, seguido pelo 
 
 **Nascidos Vivos de acordo com score Apgar no 1º e 5º minuto**
 
+Cerca de 90% dos bebês nascem em ótimas condições, com nota geral de 8 a 10. Abaixo disso, os índices revelam dificuldades: 7 (leve), de 4 a 6 (moderada) e de 0 a 3 (grave).
+>
+Crianças com pontuações inferiores a 7, recebem assistência imediata visando o aumento da classificação.
+>
+A primeira média é dada no primeiro minuto, depois no quinto e no décimo minutos.
+>
+Segundo a média, em todo o mundo, cerca de 4% dos recém-nascidos obtêm índice inferior a 7. Em alguns casos, os pequenos precisam ser encaminhados para a Unidade de Terapia Neonatal (UTI) Neonatal.
+>
+Nascimento prematuro, gravidez de risco, parto cesárea, tipo de anestesia aplicada e complicações no trabalho de parto estão entre os fatores que podem afetar a pontuação.
+
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/3c066e65-5b1b-40c9-848b-ab104b8be5a5" alt="Top"  height="300">
+
+**Nascidos Vivos de acordo com peso**
 
