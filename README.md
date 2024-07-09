@@ -244,3 +244,26 @@ Nascimento prematuro, gravidez de risco, parto cesárea, tipo de anestesia aplic
 
 **Nascidos Vivos de acordo com peso**
 
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/336e5305-b2f1-4e9f-a515-a8272967ed47" alt="Top"  height="300">
+
+Em 2023, 62% dos recém-nascidos, estão na faixa de 3000 a 3999 gramas.
+
+**Nascidos vivos segundo idade da mãe**
+
+<table border="1">
+    <tr>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/fd497d7b-19c1-462c-8f63-9033569d6817" alt="Top"  height="200"></td>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/7e07b1f3-3977-410d-b582-57ed77d41bc2" alt="Top"  height="300"> </td>
+    </tr>
+</table>
+
+Mães entre 25 e 29 anos, foram as que mais fizeram partos, sendo 26 anos a idade com mais partos.
+>
+O número de mães com menos de 19 anos corresponde a 12% do total de nascidos vivos em 2023.
+>
+Quase metade dos nascidos vivos são de mães entre 20 e 29 anos.(49,2%)
+>
+Mães com mais de 40 anos representam 4,33% do total.
+
+**Proporção segundo raça/cor da mãe por região**
+
