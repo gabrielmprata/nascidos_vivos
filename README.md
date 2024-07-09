@@ -267,3 +267,15 @@ Mães com mais de 40 anos representam 4,33% do total.
 
 **Proporção segundo raça/cor da mãe por região**
 
+<table border="1">
+    <tr>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/a67e8a26-31ba-481e-b05d-4d6173e56843" alt="Top"  height="200"></td>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/b5d4306e-2680-43e7-91ae-4461f1bfabec" alt="Top"  height="300"> </td>
+    </tr>
+</table>
+
+No Brasil 55,5% das mães são pardas, seguidas por mães brancas com 32,9% do total de nascimentos.
+>
+Na região Norte predomina as mães pardas, enquanto que no Sul, a predominancia são de mães brancas.
+>
+Na região Norte encontramos a maior quantidade de mães Indigenas.
