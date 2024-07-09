@@ -211,3 +211,23 @@ Os hospitais de gestão Municipal, são os que mais realizam partos, 1.62 milhõ
 >
 Outro dado importante é a quantidade de nascimentos em aldeias indíginas, cerca de 1.779 no ano de 2023.
 
+**Nascidos Vivos com anomalias congênitas segundo região**
+
+<table border="1">
+    <tr>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/5c9f2d48-c293-4644-9f39-d8840b43ef84" alt="Top"  height="200"></td>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/b46bb28d-9c3d-4ce4-9bf1-9b36cada190f" alt="Top"  height="300"> </td>
+    </tr>
+</table>
+
+As anomalias congênitas são um grupo de alterações estruturais ou funcionais que ocorrem durante a vida intrauterina e que podem ser detectadas antes, durante ou após o nascimento.
+>
+Podem afetar diversos órgãos e sistemas do corpo humano e são causadas por um ou mais fatores genéticos, infecciosos, nutricionais e ambientais, podendo ser resultado de uma combinação desses fatores.
+>
+No ano de 2023, em 97% dos partos não foram identificadas anomalias, e em apenas 0,98% (24.770) foram identificadas.
+>
+A região Sudeste registra 44,1% dos nascidos vivos com anomalias, seguido pelo Nordeste com 26,9%.
+
+**Nascidos Vivos de acordo com score Apgar no 1º e 5º minuto**
+
+
