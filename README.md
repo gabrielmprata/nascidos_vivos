@@ -279,3 +279,15 @@ No Brasil 55,5% das mães são pardas, seguidas por mães brancas com 32,9% do t
 Na região Norte predomina as mães pardas, enquanto que no Sul, a predominancia são de mães brancas.
 >
 Na região Norte encontramos a maior quantidade de mães Indigenas.
+
+**Nascidos vivos segundo situação conjugal da mãe**
+
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/07b61987-8e12-49a2-bbee-10a6ef92b50c" alt="Top"  height="300">
+
+Metade das mães são solteiras, 51,3%.
+>
+Em seguida podemos dizer que que 46,9% das mães estão em um relacionamento(Casada+União estável).
+
+**Nascidos vivos segundo escolaridade da mãe**
+
+
