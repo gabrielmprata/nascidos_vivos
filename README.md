@@ -290,4 +290,18 @@ Em seguida podemos dizer que que 46,9% das mães estão em um relacionamento(Cas
 
 **Nascidos vivos segundo escolaridade da mãe**
 
+<table border="1">
+    <tr>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/c583fe88-62b0-47d1-a123-d5f4ce9b3642" alt="Top"  height="200"></td>
+        <td><img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/5cd2820a-084c-4e71-8174-190ad64863d2" alt="Top"  height="300"> </td>
+    </tr>
+</table>
+
+Quanto a escolaridade das mães 34,5% possuem ensino médio completo, 20.9% incompleto.
+>
+Apenas 18,9% possui ensino superior completo.
+
+**Nascidos vivos segundo profissão da mãe**
+
+
 
