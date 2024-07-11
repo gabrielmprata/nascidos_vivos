@@ -303,5 +303,13 @@ Apenas 18,9% possui ensino superior completo.
 
 **Nascidos vivos segundo profissão da mãe**
 
+A Classificação Brasileira de Ocupações - CBO, instituída por portaria ministerial nº. 397, de 9 de outubro de 2002, tem por finalidade a identificação das ocupações no mercado de trabalho, para fins classificatórios.
+>
+Essa informação no SISNAC, tem 7% dos registros sem o preeenchimento do código.
+>
+Destacamos aqui as 10 principais profissões.
+
+<img src="https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/c6268345-c82b-4e0b-bbc7-fd5d669cf0d1" alt="Top"  height="300">
+
 
 
