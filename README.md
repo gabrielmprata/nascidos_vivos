@@ -320,3 +320,4 @@ Destacamos aqui as 10 principais profissões.
 No Brasil, cerca de 98% dos nascidos vivos, são de getações únicas, e apenas 2% são de gemêos.
 
 **NASC**
+registros dos nascidos vivos no Brasil
