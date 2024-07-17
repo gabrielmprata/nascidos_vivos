@@ -322,14 +322,20 @@ No Brasil, cerca de 98% dos nascidos vivos, são de getações únicas, e apenas
 **Nascidos vivos segundo semanas de gestação**
 
 <table border="1">
-    <tr>
-        <td><img src="https://github.com/user-attachments/assets/cedaf1b8-c27c-4221-bb59-21b06b445708" alt="Top"  height="300" width="350" ></td>
-        <td><img src="https://github.com/user-attachments/assets/e52a2321-8a62-4045-8d42-564a2b045aea" alt="Top"  height="300" width="550"> </td>
-    </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/cedaf1b8-c27c-4221-bb59-21b06b445708" alt="Top"  height="300" width="350" ></td>
+    <td><img src="https://github.com/user-attachments/assets/e52a2321-8a62-4045-8d42-564a2b045aea" alt="Top"  height="300" width="550"> </td>
+  </tr>
 </table>
 
+**Nascidos vivos segundo consultas pré-natal**
 
-
+<table border="1">
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/284ecb42-6d04-4363-a566-a1f3eda5b9f7" alt="Top"  height="300" width="350" ></td>
+    <td><img src="https://github.com/user-attachments/assets/812a87ce-20a3-4a6a-ba92-4c10800c6262" alt="Top"  height="300" width="550"> </td>
+  </tr>
+</table>
 
 
 
