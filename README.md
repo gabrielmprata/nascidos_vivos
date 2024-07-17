@@ -337,5 +337,11 @@ No Brasil, cerca de 98% dos nascidos vivos, são de getações únicas, e apenas
   </tr>
 </table>
 
+Um grande avanço na saúde das mães e dos bebês, é o acesso ao pré-natal, onde registramos 77,5% de mães com 7 ou mais consultas pré-natal, considerado "Mais do que adequado" e 16,6% considerado como "Adequado", totalizando 94,1%.
 
+Em 2015 70,2% das mulheres tiveram acesso ao pré-natal, somando “Mais que adequado” e “Adequado”.
+
+Um grande salto na melhoria ao acompanhamento das futuras mamães.
+
+A região Norte é a que está mais abaixo da média nacional, alcançando apenas 62% das mães, e em 2015 o percentual era de 53,1%.
 
