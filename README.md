@@ -323,8 +323,8 @@ No Brasil, cerca de 98% dos nascidos vivos, são de getações únicas, e apenas
 
 <table border="1">
     <tr>
-        <td><img src="https://github.com/user-attachments/assets/cedaf1b8-c27c-4221-bb59-21b06b445708" alt="Top"  height="200"></td>
-        <td><img src="https://github.com/user-attachments/assets/e52a2321-8a62-4045-8d42-564a2b045aea" alt="Top"  height="300"> </td>
+        <td><img src="https://github.com/user-attachments/assets/cedaf1b8-c27c-4221-bb59-21b06b445708" alt="Top"  height="300" width="350" ></td>
+        <td><img src="https://github.com/user-attachments/assets/e52a2321-8a62-4045-8d42-564a2b045aea" alt="Top"  height="300" width="550"> </td>
     </tr>
 </table>
 
