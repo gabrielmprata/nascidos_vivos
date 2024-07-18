@@ -375,6 +375,10 @@ No Norte, a proporção de cesárias é menor entre as regiões.
 
 **Nascidos vivos segundo assistência**
 
+<img src="https://github.com/user-attachments/assets/d0cd519e-4206-48a5-b4b5-7d5eaffe7d43" alt="Top"  height="350">
 
+Nossos recém-nascidos chegam ao mundo, na grande maioria das regiões, pelas mãos de médicos.
+
+A região Norte, é a que mais registra nascimentos assistidos por enfermagem e por parteiras.
 
 
