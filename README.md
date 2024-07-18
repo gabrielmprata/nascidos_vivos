@@ -381,4 +381,66 @@ Nossos recém-nascidos chegam ao mundo, na grande maioria das regiões, pelas m�
 
 A região Norte, é a que mais registra nascimentos assistidos por enfermagem e por parteiras.
 
+**Nascidos vivos segundo Grupos de Robson**
+
+Classificação de Robson serve para contribuir com a análise da taxa de cesarianas realizadas, bem como seu aumento ou diminuição de acordo com os grupos propostos.
+
+A planilha de Classificação de Robson deve ser utilizada pelo gestor local. O preenchimento adequado dessa planilha ajudará a analisar o panorama que se tem no que diz respeito às taxas de cesárea e sua indicação.
+
+1 - Nulípara, feto único, cefálico, ≥ 37 semanas, trabalho de parto (TP) espontâneo
+
+2 - Nulípara, feto único, cefálico, ≥ 37 semanas, induzido ou cesárea fora do TP
+
+3 - Multípara sem cesárea anterior, feto único, cefálico, ≥ 37 semanas, TP espontâneo
+
+4 - Multípara sem cesárea anterior, feto único, cefálico, ≥ 37 semanas, TP induzido ou cesárea fora do TP
+
+5 - Multípara com cesárea prévia, feto único, cefálico, ≥ 37 semanas
+
+6 - Todas as nulíparas com apresentação pélvica
+
+7 - Todas as multíparas com apresentação pélvica (incluindo com cesárea prévia)
+
+8 - Todas as gestações múltiplas (incluindo com cesárea prévia)
+
+9 - Todas as gestações córmicas ou oblíquas (incluindo com cesárea prévia)
+
+10 - Gestação única, feto cefálico, ≤ 36 semanas (inclusive com cesárea prévia)
+
+<img src="https://github.com/user-attachments/assets/0519374f-6fcc-49ac-a55d-27a130537665" alt="Top"  height="350">
+
+No gráfico, percebe-se que os nascimentos classificados nos grupos de 1 a 4 (nos quais o risco de cesárea é teoricamente menor) representa cerca 60% do total de nascimentos.
+
+Já o grupo 5 (com antecedente de cesárea, gestação única, cefálica, ≥37 semanas) representa cerca de 25%.
+
+Assim, constata-se que os grupos de 1 a 5 concentram 85% dos nascimentos.
+
+<img src="https://github.com/user-attachments/assets/5c899721-2c55-4a1d-a735-3405889c7491" alt="Top"  height="350">
+
+A taxa de cesárias no Brasil foi de 59,7%. Nas regiões Norte e Nordeste encontram-se as menores taxas: 52,7% e 57,5%.
+
+No estudo de referência de Robson, foram encontrados as seguintes taxas por grupo:
+
+**01 - 7,9 / 02 - 31,2 / 03 - 1,3 / 04 - 13,6 / 05 - 64**
+
+**06 - 92,3 / 07 - 66,7 / 08 - 63,6 / 09 - 100 / 10 - 27,2**
+
+Para o grupo 1 todas as regiões apresentam, proporções, no mínimo 5 vezes maiores que o estudo.
+
+Para o grupo 2 todas as regiões apresentam, proporções, no mínimo 2 vezes maiores que o estudo.
+
+Para o grupo 3 aproximadamente 15 vezes, e o grupo 4 pelo menos 4 vezes maior que o referido estudo.
+
+Nas gestações gemelares, grupo 8, Robson apresentou taxa de 63,6%, nas regiões, houve variação de 83% a 91%.
+
+No grupo 10, todas as regiões apresentaram, no mínimo, proporções 6 vezes maiores aos valores encontrados por Robson.
+
+**Nascidos vivos segundo número de filhos anteriores**
+
+<img src="https://github.com/user-attachments/assets/bfd1804e-99b6-493f-ab5a-e35d3e2a4fd6" alt="Top"  height="350">
+
+No Brasil 35% das mães são de primeira viagem, seguida de 29% de mães que já possuem um filho, e de 17% de mães com dois filhos.
+
+Esse comportamento se repete em todas as regiões.
+
 
