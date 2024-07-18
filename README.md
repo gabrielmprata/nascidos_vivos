@@ -345,3 +345,16 @@ Um grande salto na melhoria ao acompanhamento das futuras mamães.
 
 A região Norte é a que está mais abaixo da média nacional, alcançando apenas 62% das mães, e em 2015 o percentual era de 53,1%.
 
+<table border="1">
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/e331a883-85fb-4896-b8f2-af93a0087d7f" alt="Top"  height="300" width="350" ></td>
+    <td><img src="https://github.com/user-attachments/assets/706848a2-558e-42cd-9697-3b255dbad545" alt="Top"  height="300" width="550"> </td>
+  </tr>
+</table>
+
+Verifica-se que os 5 estados com as proporções mais baixas, estão todos na região Norte, Amapá, Roraima, Acre, Pará e Amazonas.
+
+Do outro lado, o estado do Paraná, na região Sul, tem a maior proporção de “mais que adequado e adequado”, 96%.
+
+Entre os 5 melhores estados, 3 são da região Sul.
+
