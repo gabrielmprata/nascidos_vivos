@@ -358,3 +358,23 @@ Do outro lado, o estado do Paraná, na região Sul, tem a maior proporção de �
 
 Entre os 5 melhores estados, 3 são da região Sul.
 
+**Nascidos vivos por tipo de parto**
+
+<table border="1">
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/4721b33b-d075-40ac-8b08-f6f241ee80f4" alt="Top"  height="300" width="250" ></td>
+    <td><img src="https://github.com/user-attachments/assets/1dbab7e7-4143-45e6-90f0-d2fb5659c807" alt="Top"  height="300" width="550"> </td>
+  </tr>
+</table>
+
+A Maioria dos partos são feitos por cesária.
+
+A região centro-oeste tem a maior proporção de cesárias, seguida da região Sul.
+
+No Norte, a proporção de cesárias é menor entre as regiões.
+
+**Nascidos vivos segundo assistência**
+
+
+
+
