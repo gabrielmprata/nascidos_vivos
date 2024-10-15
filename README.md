@@ -1,4 +1,4 @@
-# Como os Brasileiros chegam ao mundo 🤰 👶
+# Como os Brasileiros chegam ao mundo 🤰 👶 🏥
 Sistema de Informações sobre Nascidos Vivos (SINASC)
 
 ![Como os Brasileiros chegam ao mundo](https://github.com/gabrielmprata/nascidos_vivos/assets/119508139/27bbf386-0805-455d-aa9b-06848ee5d204)
