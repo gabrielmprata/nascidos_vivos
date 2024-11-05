@@ -46,7 +46,7 @@ No Brasil, o Sistema de Informação sobre Nascidos Vivos (Sinasc) tem a finalid
 >
 **2.2.1 CNES**
 >
-Dataset auxiliar, com as informações dos estabelecimentos de saúde.
+Dataset auxiliar, com as informações dos estabelecimentos de saúde(Cadastro Nacional de estabelecimentos).
 >
 > Link: https://s3.sa-east-1.amazonaws.com/ckan.saude.gov.br/CNES/cnes_estabelecimentos.zip
 >
