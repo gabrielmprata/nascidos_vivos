@@ -61,7 +61,7 @@ from ibge.localidades import *
 ```
 <br>
 
-## **<font color=#85d338> 3. Pré-porcessamento**
+## **<font color=#85d338> 3. Pré-processamento**
 >
 [![Colab Notebook](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1mulsenF2L_Vjm-yDFTv0t2o74Mhqx49L)
 >
