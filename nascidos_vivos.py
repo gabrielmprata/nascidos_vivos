@@ -62,6 +62,17 @@ df_hist_sexo_ano['qtd_mm'] = (df_hist_sexo_ano['qtd']/1000000).round(2)
 
 df_total = df_sinasc.groupby(["ano_mes"])['qtd'].sum().reset_index()
 
+# 3.2.2 Nascidos-vivos por dia da semana e hora
+# Nascidos vivos por dia da semana e hora
+df_wk_hora = (df_sinasc[["wk", "hora", "parto", "qtd"]][(df_sinasc["parto"] != "Ignorado")]).groupby(
+    ["wk", "hora", "parto"])['qtd'].sum().reset_index()
+
+# classificar dia da semana
+# recebe o dia da semana em numeral, para depois poder ordenar de maneira correta
+df_wk_hora["ordem"] = df_wk_hora["wk"]
+dicwk = {0: "Segunda-feira", 1: "Terça-feira", 2: "Quarta-feira",
+         3: "Quinta-feira", 4: "Sexta-feira", 5: "Sábado", 6: "Domingo"}
+df_wk_hora = df_wk_hora.replace({'wk': dicwk})
 
 #####################################################################
 # Construção dos Gráficos
@@ -136,6 +147,16 @@ ano_mes.update_traces(line_color='#4c60d6', line_width=2,
 # se o type for date, vai respeitar o intervalo
 ano_mes.update_xaxes(type="category", title=None)
 
+# 3.2.2 Nascidos-vivos por dia da semana e hora
+diahora = px.bar((df_wk_hora.groupby(["ordem", "wk", "parto"])['qtd'].sum().reset_index()).sort_values(by='ordem', ascending=True),
+                 x="wk", y="qtd", color="parto", labels=dict(wk="dia da semana", qtd="Nascidos"),
+                 color_discrete_sequence=px.colors.sequential.Blues_r, text_auto='.2s',
+                 category_orders={"parto": ["Vaginal", "Cesário"]},
+                 template="plotly_white"
+                 )
+diahora.update_traces(textfont_size=12, textangle=0,
+                      textposition="outside", cliponaxis=False)
+
 
 #######################
 # Dashboard Main Panel
@@ -144,9 +165,11 @@ st.image("https://raw.githubusercontent.com/gabrielmprata/nascidos_vivos/main/im
 st.markdown("# 🏥Como os Brasileiros chegam ao mundo🤰👶")
 st.markdown("## :blue[SINASC - Sistema de Informações sobre Nascidos Vivos]")
 
-with st.expander("Introdução", expanded=True):
+text = """:orange[**Introdução**]"""
+
+with st.expander(text, expanded=True):
     st.markdown("""
-                Os dados apresentados nesse estudo acadêmico, referem-se aos características do nascimento dos brasileiros.
+                Os dados apresentados nesse estudo acadêmico, referem-se as características do nascimento dos brasileiros.
             
                 As informações dos Nascidos Vivos, estão disponíveis nos **Dados Abertos** do OpenDataSus.
 
@@ -157,7 +180,7 @@ with st.expander("Introdução", expanded=True):
 """)
 
 st.markdown("## :blue[Apresentação dos resultados]")
-st.markdown("### :blue[Informações históricas]")
+st.markdown("### :blue[Informações históricas, 2000-2023]")
 
 text = """:blue[**Histórico de nascidos-vivos no Brasil:**]"""
 
@@ -180,7 +203,7 @@ with st.expander(text, expanded=True):
     Bom, no histórico deste estudo, desde o ano 2000, nascem mais :blue[**MENINOS**] do que **meninas**.
     """)
 
-text = """:blue[**Histórico pela idade das mães:**]"""
+text = """:blue[**Histórico pela idade das mães, 2018-2023**]"""
 
 with st.expander(text, expanded=True):
     st.plotly_chart(idade, use_container_width=True)
@@ -212,3 +235,13 @@ Março foi o mês com mais nascimentos, 234.022, seguido por Maio, com 230.858
 
 Na outra ponta, o mês de Novembro foi o que teve menos nascimentos, com 190.052.
 """)
+
+text = """:blue[**Nascidos por dia da semana e hora**]"""
+
+with st.expander(text, expanded=True):
+    st.plotly_chart(diahora, use_container_width=True)
+    st.markdown("""
+Nascem mais crianças no início da semana, esse número cai nos finais de semana, por conta das cesárias, que geralmente são agendadas em dia úteis.
+
+Os partos vaginais seguem a mesma tendência durante todos os dias da semana.
+    """)
