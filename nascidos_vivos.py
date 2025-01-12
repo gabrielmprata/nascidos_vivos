@@ -74,6 +74,11 @@ dicwk = {0: "Segunda-feira", 1: "Terça-feira", 2: "Quarta-feira",
          3: "Quinta-feira", 4: "Sexta-feira", 5: "Sábado", 6: "Domingo"}
 df_wk_hora = df_wk_hora.replace({'wk': dicwk})
 
+# Pivot table para o heatmap de hora por dia da semana
+df_por_hora = pd.pivot_table(
+    df_wk_hora, index=['ordem'], aggfunc='sum', columns=['hora'], values=['qtd'])
+
+
 #####################################################################
 # Construção dos Gráficos
 # 3.1 A história dos nascimentos no Brasil, 2000-2023
@@ -156,6 +161,45 @@ diahora = px.bar((df_wk_hora.groupby(["ordem", "wk", "parto"])['qtd'].sum().rese
                  )
 diahora.update_traces(textfont_size=12, textangle=0,
                       textposition="outside", cliponaxis=False)
+
+heat_hr = px.imshow(df_por_hora,
+                    labels=dict(x="Hora", y="Dia da semana"),
+                    x=[0,  1,  2,  3,  4,  5,  6,  7,  8, 9, 10, 11,
+                        12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+                    y=['segunda-feira', 'terça-feira', 'quarta-feira',
+                        'quinta-feira', 'sexta-feira', 'sábado', 'domingo'],
+                    color_continuous_scale="Blues",
+                    text_auto=True
+                    )
+heat_hr.update_layout(
+    xaxis=dict(
+        tickvals=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+                  13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+        ticktext=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+                  12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+    )
+)
+
+
+parto_hr = px.bar(df_wk_hora.groupby(["hora", "parto"])['qtd'].sum().reset_index(),
+                  x="hora", y="qtd", color="parto", labels=dict(hora="Hora", qtd="Nascidos", parto="Parto"),
+                  color_discrete_sequence=px.colors.sequential.Blues_r, text_auto='.2s', template="plotly_white"
+                  )
+parto_hr.update_layout(xaxis=dict(
+    tickvals=df_wk_hora['hora'], ticktext=df_wk_hora['hora']))
+parto_hr.update_traces(textfont_size=12, textangle=0,
+                       textposition="outside", cliponaxis=False)
+
+
+parto_hora = px.bar(df_wk_hora.groupby(["hora", "parto"])['qtd'].sum().reset_index(),
+                    x="hora", y="qtd", color="parto", labels=dict(hora="Hora", qtd="Nascidos", parto="Parto"),
+                    category_orders={"parto": ["Vaginal", "Cesário"]},
+                    color_discrete_sequence=px.colors.sequential.Blues_r, text_auto='.2s', template="plotly_white"
+                    )
+parto_hora.update_layout(xaxis=dict(
+    tickvals=df_wk_hora['hora'], ticktext=df_wk_hora['hora']))
+parto_hora.update_traces(textfont_size=12, textangle=0,
+                         textposition="outside", cliponaxis=False)
 
 
 #######################
@@ -245,3 +289,17 @@ Nascem mais crianças no início da semana, esse número cai nos finais de seman
 
 Os partos vaginais seguem a mesma tendência durante todos os dias da semana.
     """)
+    st.write(" ")
+    st.write(":blue[Por hora e dia da semana:]")
+    st.plotly_chart(heat_hr, use_container_width=True)
+    st.write(" ")
+    st.write(":blue[Por tipo de parto:]")
+    st.plotly_chart(parto_hora, use_container_width=True)
+    st.write(" ")
+    st.markdown("""
+                Entre as 8 e as 11 horas da manhã e entre 14 e 17 horas da tarde, são os períodos em que ocorrem mais nascimentos.
+
+As cesárias praticamente dominam esse período, enquanto que o parto vaginal mantém uma mesma constância ao longo do dia.
+
+**Em 2023, nasceram 288 crianças por hora, ou 4 por minuto, ou 6932 por dia.**
+                """)
