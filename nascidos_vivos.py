@@ -31,6 +31,9 @@ df_sinasc = pd.read_csv(url, compression='bz2')
 df_hist_sexo_ano = pd.read_csv(url2, encoding="Latin 1", sep=';')
 df_hist_idade = pd.read_csv(url5, encoding="Latin 1", sep=';')
 
+UF_flag = pd.read_csv(
+    'https://raw.githubusercontent.com/gabrielmprata/anatel/refs/heads/main/datasets/UF_flags.csv', encoding="utf_8", sep=';')
+
 #####################################################################
 # Construção dos Datasets
 # 3.1 A história dos nascimentos no Brasil, 2000-2023
@@ -78,6 +81,13 @@ df_wk_hora = df_wk_hora.replace({'wk': dicwk})
 df_por_hora = pd.pivot_table(
     df_wk_hora, index=['ordem'], aggfunc='sum', columns=['hora'], values=['qtd'])
 
+# 3.2.4 Representatividade por UF
+# Dataframe agrupando por região
+df_total_regiao = df_sinasc.groupby(["regiao", "uf"])[
+    'qtd'].sum().reset_index()
+
+df_total_regiao = pd.merge(df_total_regiao, UF_flag,
+                           left_on='uf', right_on='uf')
 
 #####################################################################
 # Construção dos Gráficos
@@ -201,6 +211,21 @@ parto_hora.update_layout(xaxis=dict(
 parto_hora.update_traces(textfont_size=12, textangle=0,
                          textposition="outside", cliponaxis=False)
 
+# 3.2.4 Representatividade por UF
+# Dataframe agrupando por região
+
+tot_uf = px.pie(df_total_regiao, values='qtd', names='uf', labels=dict(uf="UF", qtd="Nascidos"),
+                height=350, width=350, color_discrete_sequence=px.colors.sequential.Blues_r
+                )
+tot_uf.update_layout(showlegend=False)
+tot_uf.update_traces(textposition='outside', textinfo='percent+label')
+
+
+tot_regiao = px.pie(df_total_regiao, values='qtd', names='regiao', labels=dict(regiao="Região", qtd="Nascidos"),
+                    height=350, width=350, color_discrete_sequence=px.colors.sequential.Blues_r
+                    )
+tot_regiao.update_layout(showlegend=False)
+tot_regiao.update_traces(textposition='outside', textinfo='percent+label')
 
 #######################
 # Dashboard Main Panel
@@ -303,3 +328,32 @@ As cesárias praticamente dominam esse período, enquanto que o parto vaginal ma
 
 **Em 2023, nasceram 288 crianças por hora, ou 4 por minuto, ou 6932 por dia.**
                 """)
+
+text = """:blue[**Nascidos por Estado e Região**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((4.9, 4.1), gap='medium')
+
+    with col[0]:
+        st.dataframe(
+            df_total_regiao.sort_values(by='qtd', ascending=False),
+            column_order=("flag", "uf", "qtd"),
+            column_config={
+                "flag": st.column_config.ImageColumn(" ", width="small"),
+                "uf": "UF",
+                "qtd": "2023"
+            },
+            hide_index=True,
+        )
+
+    with col[1]:
+        st.plotly_chart(tot_regiao, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+                O estado com o maior número de nascimentos foi **São Paulo, com 505.331**, representando quase 20% dos nascimentos no Brasil.
+
+Em São Paulo nascem 118% a mais que Minas Gerais, que é o segundo estado com mais nascimentos.
+                """)
+df_total_regiao
