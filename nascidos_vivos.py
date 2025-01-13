@@ -227,6 +227,12 @@ tot_regiao = px.pie(df_total_regiao, values='qtd', names='regiao', labels=dict(r
 tot_regiao.update_layout(showlegend=False)
 tot_regiao.update_traces(textposition='outside', textinfo='percent+label')
 
+sun_uf = px.sunburst(df_total_regiao, path=['regiao', 'uf'], values='qtd',
+                     labels=dict(regiao="Região", qtd="Nascidos"),
+                     template="plotly_white",
+                     color_discrete_sequence=px.colors.sequential.Blues_r)
+sun_uf.update_traces(textinfo="label+percent parent")
+
 #######################
 # Dashboard Main Panel
 
@@ -333,7 +339,7 @@ text = """:blue[**Nascidos por Estado e Região**]"""
 
 with st.expander(text, expanded=True):
 
-    col = st.columns((4.9, 4.1), gap='medium')
+    col = st.columns((3.1, 4.5, 4.1), gap='medium')
 
     with col[0]:
         st.dataframe(
@@ -350,10 +356,12 @@ with st.expander(text, expanded=True):
     with col[1]:
         st.plotly_chart(tot_regiao, use_container_width=True)
 
+    with col[2]:
+        st.plotly_chart(sun_uf, use_container_width=True)
+
     st.write(" ")
     st.markdown("""
                 O estado com o maior número de nascimentos foi **São Paulo, com 505.331**, representando quase 20% dos nascimentos no Brasil.
 
 Em São Paulo nascem 118% a mais que Minas Gerais, que é o segundo estado com mais nascimentos.
                 """)
-df_total_regiao
