@@ -89,6 +89,12 @@ df_total_regiao = df_sinasc.groupby(["regiao", "uf"])[
 df_total_regiao = pd.merge(df_total_regiao, UF_flag,
                            left_on='uf', right_on='uf')
 
+# Histórico por região
+df_evol_regiao = df_sinasc.groupby(["ano_mes", "regiao"])[
+    'qtd'].sum().reset_index()
+
+df_evol_regiao['qtd'] = (df_evol_regiao['qtd']/1000).round(2)
+
 #####################################################################
 # Construção dos Gráficos
 # 3.1 A história dos nascimentos no Brasil, 2000-2023
@@ -214,13 +220,6 @@ parto_hora.update_traces(textfont_size=12, textangle=0,
 # 3.2.4 Representatividade por UF
 # Dataframe agrupando por região
 
-tot_uf = px.pie(df_total_regiao, values='qtd', names='uf', labels=dict(uf="UF", qtd="Nascidos"),
-                height=350, width=350, color_discrete_sequence=px.colors.sequential.Blues_r
-                )
-tot_uf.update_layout(showlegend=False)
-tot_uf.update_traces(textposition='outside', textinfo='percent+label')
-
-
 tot_regiao = px.pie(df_total_regiao, values='qtd', names='regiao', labels=dict(regiao="Região", qtd="Nascidos"),
                     height=350, width=350, color_discrete_sequence=px.colors.sequential.Blues_r
                     )
@@ -232,6 +231,23 @@ sun_uf = px.sunburst(df_total_regiao, path=['regiao', 'uf'], values='qtd',
                      template="plotly_white",
                      color_discrete_sequence=px.colors.sequential.Blues_r)
 sun_uf.update_traces(textinfo="label+percent parent")
+
+
+reg_evol = px.line(df_evol_regiao, x="ano_mes", y="qtd", color='regiao',
+                   markers=True, text='qtd',
+                   labels=dict(regiao="Região", ano_mes="Ano/Mês",
+                               qtd="Nascidos (k)"),
+                   color_discrete_sequence=px.colors.sequential.Blues_r,
+                   line_shape="spline",
+                   template="plotly_white"
+                   )
+reg_evol.update_traces(textposition='top center')
+reg_evol.for_each_trace(lambda t: reg_evol.add_annotation(
+    x=t.x[-1], y=t.y[-1], text=t.name,
+    font_color=t.line.color,
+    ax=5, ay=0, xanchor="left", showarrow=False
+))
+reg_evol.update_xaxes(type="category")
 
 #######################
 # Dashboard Main Panel
@@ -364,4 +380,8 @@ with st.expander(text, expanded=True):
                 O estado com o maior número de nascimentos foi **São Paulo, com 505.331**, representando quase 20% dos nascimentos no Brasil.
 
 Em São Paulo nascem 118% a mais que Minas Gerais, que é o segundo estado com mais nascimentos.
+
+A região sudeste é a que concentra o maior número de nascidos vivos, 38%, seguida do Nordeste com 28%.
                 """)
+    st.write(" ")
+    st.plotly_chart(reg_evol, use_container_width=True)
