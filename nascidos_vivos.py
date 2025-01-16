@@ -95,6 +95,19 @@ df_evol_regiao = df_sinasc.groupby(["ano_mes", "regiao"])[
 
 df_evol_regiao['qtd'] = (df_evol_regiao['qtd']/1000).round(2)
 
+# 3.2.6 Nascidos Vivos segundo sexo
+# por sexo
+df_sexo = (df_sinasc[["ano_mes", "regiao", "sexo", 'qtd']]
+           [(df_sinasc['sexo'] != 'Ignorado')]
+           ).groupby(["ano_mes", "regiao", "sexo"])['qtd'].sum().reset_index()
+
+# Distribuição nascidos vivos de acordo com o sexo e por região
+df_sexo_bar = df_sexo.groupby(["regiao", "sexo"])['qtd'].sum().reset_index()
+
+df_sexo_bar['perc'] = (100 * df_sexo_bar['qtd'] /
+                       df_sexo_bar.groupby('regiao')['qtd'].transform('sum')).round(2)
+
+
 #####################################################################
 # Construção dos Gráficos
 # 3.1 A história dos nascimentos no Brasil, 2000-2023
@@ -249,6 +262,30 @@ reg_evol.for_each_trace(lambda t: reg_evol.add_annotation(
 ))
 reg_evol.update_xaxes(type="category")
 
+# 3.2.6 Nascidos Vivos segundo sexo
+gr_sexo = px.pie(df_sexo, names='sexo', values='qtd', height=300, width=600, hole=0.7,
+                 color_discrete_sequence=["magenta", "blue"],
+                 category_orders={"sexo": ["Feminino", "Masculino"]},
+                 )
+gr_sexo.update_traces(hovertemplate=None, textposition='outside',
+                      textinfo='percent+label', rotation=50)
+gr_sexo.update_layout(margin=dict(t=50, b=35, l=0, r=0), showlegend=False)
+gr_sexo.add_layout_image(
+    dict(
+        source="https://raw.githubusercontent.com/gabrielmprata/nascidos_vivos/main/img/genero.png",
+        x=0.66, y=0.3, xref="paper", yref="paper", xanchor="right", yanchor="bottom", sizing="contain",
+        sizex=0.4, sizey=0.4)  # tamanho da imagem
+)
+
+
+# Agrupando
+gr_sexo_bar = px.bar(df_sexo_bar, x="regiao", y="perc", color="sexo",
+                     labels=dict(regiao="Região", sexo="Sexo",
+                                 perc="Percentual"),
+                     color_discrete_sequence=["magenta", "blue"],
+                     template="plotly_white", text="perc"
+                     )
+
 #######################
 # Dashboard Main Panel
 
@@ -385,3 +422,22 @@ A região sudeste é a que concentra o maior número de nascidos vivos, 38%, seg
                 """)
     st.write(" ")
     st.plotly_chart(reg_evol, use_container_width=True)
+
+text = """:blue[**Nascidos por Sexo**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((4.2, 4.2), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_sexo, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_sexo_bar, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+                No Brasil em 2023 nasceram 1,29 milhões de meninos(51,2%) e 1,23 milhões de meninas(48,8%).
+
+                Nas regiões, temos o mesmo comportamento na proporção de nascimento por sexo.
+                """)
