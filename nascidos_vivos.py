@@ -107,6 +107,24 @@ df_sexo_bar = df_sexo.groupby(["regiao", "sexo"])['qtd'].sum().reset_index()
 df_sexo_bar['perc'] = (100 * df_sexo_bar['qtd'] /
                        df_sexo_bar.groupby('regiao')['qtd'].transform('sum')).round(2)
 
+# 3.2.7 Nascidos Vivos segundo local de nascimento
+df_locnasc = (df_sinasc[["regiao", "locnasc", 'qtd']]
+              [(df_sinasc['locnasc'] != 'Ignorado')]
+              ).groupby(["regiao", "locnasc"])['qtd'].sum().reset_index()
+
+# Proporçao de nascidos por local e regiao
+df_locnasc_prop = df_sinasc.groupby(
+    ['regiao', 'locnasc']).agg({'qtd': 'count'})
+
+# Calcula a proporção em percentual agrupado por regiao
+df_locnasc_prop['prop'] = (df_locnasc_prop.groupby(level=0).apply(
+    lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(0)
+
+# por tipo de gestao hospitalar
+df_gestao = (df_sinasc[["regiao", "tp_gestao", 'qtd']]
+             [(df_sinasc['tp_gestao'] != 'NI')]
+             ).groupby(["regiao", "tp_gestao"])['qtd'].sum().reset_index()
+
 
 #####################################################################
 # Construção dos Gráficos
@@ -286,6 +304,40 @@ gr_sexo_bar = px.bar(df_sexo_bar, x="regiao", y="perc", color="sexo",
                      template="plotly_white", text="perc"
                      )
 
+# 3.2.7 Nascidos Vivos segundo local de nascimento
+
+# Total de Nascidos vivos segundo local de nascimento. Brasil, 2023
+
+
+gr_locnasc_prop = px.bar(df_locnasc_prop.reset_index(), x='regiao', y='prop', color='locnasc',
+                         labels=dict(regiao="Região", locnasc="Local",
+                                     prop="Proporção(%)", qtd="Nascidos"),
+                         hover_data=['regiao', 'locnasc', 'prop', 'qtd'],
+                         category_orders={"locnasc": [
+                             "Hospital", "Outros estab. de saúde", "Domicílio", "Outros", "Aldeia Indígina", "Ignorado"]},
+                         color_discrete_sequence=px.colors.sequential.Blues_r,
+                         template="plotly_white", text="locnasc"
+                         )
+gr_locnasc_prop.update_layout(legend=dict(
+    yanchor="top",
+    y=-0.1,
+    xanchor="left",
+    x=0.01
+))
+
+# por tipo de gestao hospitalar df_gestao
+gr_locnasc_gestao = px.pie(df_gestao,
+                           values='qtd',
+                           names='tp_gestao',
+                           labels=dict(tp_gestao="Gestão", qtd="Nascidos"),
+                           height=350,  # altura
+                           width=350,  # largura
+                           color_discrete_sequence=px.colors.sequential.Blues_r
+                           )
+gr_locnasc_gestao.update_layout(showlegend=False)
+gr_locnasc_gestao.update_traces(textposition='outside',
+                                textinfo='percent+label')
+
 #######################
 # Dashboard Main Panel
 
@@ -441,3 +493,25 @@ with st.expander(text, expanded=True):
 
                 Nas regiões, temos o mesmo comportamento na proporção de nascimento por sexo.
                 """)
+
+text = """:blue[**Nascidos Vivos segundo local de nascimento**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((5.1, 3.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_locnasc_prop, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_locnasc_gestao, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+    A maioria dos nascimentos segue sendo em Hospitais, cerca de 98%, mas ainda há uma quantidade consideravel de nascimentos em domicílios, cerca de 15 mil.
+
+Os hospitais de gestão Municipal, são os que mais realizam partos, 1.62 milhões, representando 65% do total.
+
+Outro dado importante é a quantidade de nascimentos em aldeias indíginas, cerca de 1.779 no ano de 2023.
+
+    """)
