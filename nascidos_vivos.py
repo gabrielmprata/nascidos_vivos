@@ -126,6 +126,17 @@ df_gestao = (df_sinasc[["regiao", "tp_gestao", 'qtd']]
              ).groupby(["regiao", "tp_gestao"])['qtd'].sum().reset_index()
 
 
+# 3.2.8 Nascidos Vivos com anomalias congênitas segundo região
+# por anomalia
+df_anomalia_perc = df_sinasc.groupby(["idanomal"])['qtd'].sum().reset_index()
+
+
+df_anomalia = (df_sinasc[['ano_mes', 'regiao', 'qtd']]
+               [(df_sinasc['idanomal'] == 'Sim')]
+               ).groupby(['ano_mes', 'regiao'])['qtd'].sum().reset_index()
+
+
+#####################################################################
 #####################################################################
 # Construção dos Gráficos
 # 3.1 A história dos nascimentos no Brasil, 2000-2023
@@ -310,6 +321,7 @@ gr_sexo_bar = px.bar(df_sexo_bar, x="regiao", y="perc", color="sexo",
 
 
 gr_locnasc_prop = px.bar(df_locnasc_prop.reset_index(), x='regiao', y='prop', color='locnasc',
+                         height=500, width=800,
                          labels=dict(regiao="Região", locnasc="Local",
                                      prop="Proporção(%)", qtd="Nascidos"),
                          hover_data=['regiao', 'locnasc', 'prop', 'qtd'],
@@ -338,7 +350,40 @@ gr_locnasc_gestao.update_layout(showlegend=False)
 gr_locnasc_gestao.update_traces(textposition='outside',
                                 textinfo='percent+label')
 
-#######################
+
+# 3.2.8 Nascidos Vivos com anomalias congênitas segundo região
+anom_tot = px.pie(df_anomalia_perc, values='qtd', names='idanomal',
+                  labels=dict(idanomal="Anomalia?", qtd="Nascidos"),
+                  height=350,  # altura
+                  width=350,  # largura
+                  color_discrete_sequence=px.colors.sequential.Blues_r
+                  )
+anom_tot.update_layout(showlegend=False)
+anom_tot.update_traces(textposition='outside',
+                       textinfo='percent+label')
+
+anom_reg = px.pie(df_anomalia, values='qtd', names='regiao',
+                  labels=dict(regiao="Região", qtd="Nascidos"),
+                  height=350,  # altura
+                  width=350,  # largura
+                  color_discrete_sequence=px.colors.sequential.Blues_r
+                  )
+anom_reg.update_layout(showlegend=False)
+anom_reg.update_traces(textposition='outside',
+                       textinfo='percent+label')
+
+
+anom_hist = px.bar(df_anomalia, x="ano_mes", y="qtd", color="regiao",
+                   labels=dict(regiao="Região",
+                               ano_mes="Ano/Mês", qtd="Nascidos"),
+                   color_discrete_sequence=px.colors.sequential.Blues_r,
+                   template="plotly_white", text="regiao"
+                   )
+anom_hist.update_xaxes(type="category")
+
+
+############################################################################
+############################################################################
 # Dashboard Main Panel
 
 st.image("https://raw.githubusercontent.com/gabrielmprata/nascidos_vivos/main/img/header_baby.png")
@@ -515,3 +560,28 @@ Os hospitais de gestão Municipal, são os que mais realizam partos, 1.62 milhõ
 Outro dado importante é a quantidade de nascimentos em aldeias indíginas, cerca de 1.779 no ano de 2023.
 
     """)
+
+text = """:blue[**Nascidos Vivos com anomalias congênitas**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 3.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(anom_tot, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(anom_reg, use_container_width=True)
+
+    st.plotly_chart(anom_hist, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+        As anomalias congênitas são um grupo de alterações estruturais ou funcionais que ocorrem durante a vida intrauterina e que podem ser detectadas antes, durante ou após o nascimento.
+
+    Podem afetar diversos órgãos e sistemas do corpo humano e são causadas por um ou mais fatores genéticos, infecciosos, nutricionais e ambientais, podendo ser resultado de uma combinação desses fatores.
+
+    No ano de 2023, em 97% dos partos não foram identificadas anomalias, e em apenas 0,98% (24.770) foram identificadas.
+
+    A região Sudeste registra 44,1% dos nascidos vivos com anomalias, seguido pelo Nordeste com 26,9%.
+        """)
