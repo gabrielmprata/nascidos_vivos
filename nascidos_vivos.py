@@ -135,6 +135,14 @@ df_anomalia = (df_sinasc[['ano_mes', 'regiao', 'qtd']]
                [(df_sinasc['idanomal'] == 'Sim')]
                ).groupby(['ano_mes', 'regiao'])['qtd'].sum().reset_index()
 
+# 3.2.9 Nascidos Vivos de acordo com score Apgar no 1º e 5º minuto
+df_apgar1 = df_sinasc.groupby(["ano_mes", "apgar1"])['qtd'].sum().reset_index()
+
+tot = sum(df_apgar1.qtd)  # Total de acessos
+
+df_apgar1['perc'] = ((df_apgar1['qtd']/tot)*100).round(2)
+df_apgar1.groupby(["apgar1"])['perc'].sum().reset_index()
+
 
 #####################################################################
 #####################################################################
@@ -381,6 +389,30 @@ anom_hist = px.bar(df_anomalia, x="ano_mes", y="qtd", color="regiao",
                    )
 anom_hist.update_xaxes(type="category")
 
+# 3.2.9 Nascidos Vivos de acordo com score Apgar no 1º e 5º minuto
+# por apgar1
+
+gr_apgar1 = px.pie(df_apgar1, values='qtd', names='apgar1',
+                   labels=dict(apgar1="Apgar 1", qtd="Nascidos"),
+                   height=350,  # altura
+                   width=350,  # largura
+                   color_discrete_sequence=px.colors.sequential.Blues_r
+                   )
+gr_apgar1.update_layout(showlegend=False)
+gr_apgar1.update_traces(textposition='outside',
+                        textinfo='percent+label')
+
+
+gr_apgar1_hs = px.bar(df_apgar1, x="ano_mes", y="qtd", color="apgar1",
+                      labels=dict(apgar1="Apgar 1",
+                                  ano_mes="Ano/Mês", qtd="Nascidos"),
+                      category_orders={"apgar1": [
+                          "Apgar ignorado", "Apgar < 7", "Apgar >= 7"]},
+                      color_discrete_sequence=px.colors.sequential.Blues_r,
+                      template="plotly_white"
+                      )
+gr_apgar1_hs.update_xaxes(type="category")
+
 
 ############################################################################
 ############################################################################
@@ -584,4 +616,29 @@ with st.expander(text, expanded=True):
     No ano de 2023, em 97% dos partos não foram identificadas anomalias, e em apenas 0,98% (24.770) foram identificadas.
 
     A região Sudeste registra 44,1% dos nascidos vivos com anomalias, seguido pelo Nordeste com 26,9%.
+        """)
+
+text = """:blue[**Nascidos Vivos de acordo com score Apgar no 1º minuto**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 5.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_apgar1, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_apgar1_hs, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+        Cerca de 90% dos bebês nascem em ótimas condições, com nota geral de 8 a 10. Abaixo disso, os índices revelam dificuldades: 7 (leve), de 4 a 6 (moderada) e de 0 a 3 (grave).
+
+Crianças com pontuações inferiores a 7, recebem assistência imediata visando o aumento da classificação.
+
+A primeira média é dada no primeiro minuto, depois no quinto e no décimo minutos.
+
+Segundo a média, em todo o mundo, cerca de 4% dos recém-nascidos obtêm índice inferior a 7. Em alguns casos, os pequenos precisam ser encaminhados para a Unidade de Terapia Neonatal (UTI) Neonatal.
+
+Nascimento prematuro, gravidez de risco, parto cesárea, tipo de anestesia aplicada e complicações no trabalho de parto estão entre os fatores que podem afetar a pontuação.
         """)
