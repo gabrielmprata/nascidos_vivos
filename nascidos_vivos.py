@@ -617,8 +617,35 @@ with st.expander(text, expanded=True):
 
     A região Sudeste registra 44,1% dos nascidos vivos com anomalias, seguido pelo Nordeste com 26,9%.
         """)
+st.markdown("### :blue[Nascidos Vivos de acordo com score Apgar]")
+text2 = """:blue[**O que é score Apgar? (Expandir)**]"""
 
-text = """:blue[**Nascidos Vivos de acordo com score Apgar no 1º minuto**]"""
+with st.expander(text2, expanded=False):
+    st.image(
+        "https://raw.githubusercontent.com/gabrielmprata/nascidos_vivos/main/img/teste-apgar.jpg")
+    st.markdown("""
+        O score Apgar no primeiro minuto de vida do bebê indica como ele tolerou o parto.
+Ele é um teste rápido que avalia a saúde geral do recém-nascido. 
+O score Apgar é uma escala de 0 a 10, sendo que quanto maior a pontuação, melhor o estado do bebê. 
+O que é avaliado no score Apgar? Cor da pele, Frequência cardíaca. 
+
+Quando é realizado o score Apgar? 
+No primeiro minuto de vida
+No quinto minuto de vida
+Em alguns casos, no décimo minuto de vida
+
+O que o score Apgar indica? 
+Se o bebê tolerou bem o parto
+Se o bebê está se adaptando bem à vida fora do útero
+Se o bebê precisa de cuidados médicos imediatos
+
+O que uma pontuação baixa indica?
+Não necessariamente que o bebê terá problemas de saúde sérios ou de longo prazo 
+Que o bebê pode precisar de cuidados médicos imediatos
+
+        """)
+
+text = """:blue[**Score Apgar no 1º minuto**]"""
 
 with st.expander(text, expanded=True):
 
