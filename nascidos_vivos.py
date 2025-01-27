@@ -179,6 +179,14 @@ df_idade = (df_sinasc[['faixa_etaria', 'idademae', 'qtd']]
             [(df_sinasc['idademae'] > 0) & (df_sinasc['idademae'] < 99)]
             ).groupby(['faixa_etaria', "idademae"])['qtd'].sum().reset_index()
 
+# Proporção segundo raça/cor da mãe por região
+# por raça/cor
+df_raca = df_sinasc.groupby(["racacormae"])['qtd'].sum().reset_index()
+df_racamae = df_sinasc.groupby(['regiao', 'racacormae']).agg({'qtd': 'count'})
+
+# Calcula a proporção em percentual agrupado por regiao
+df_racamae['prop'] = (df_racamae.groupby(level=0).apply(
+    lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(0)
 
 #####################################################################
 #####################################################################
@@ -481,6 +489,25 @@ gr_faixa_etaria_mae.update_layout(showlegend=False)
 gr_faixa_etaria_mae.update_traces(textposition='outside',
                                   textinfo='percent+label')
 
+# Proporção segundo raça/cor da mãe por região
+gr_raca_cor = px.pie(df_raca, values='qtd', names='racacormae', hole=0.5,
+                     labels=dict(racacormae="Raça/cor mãe", qtd="Nascidos"),
+                     height=350, width=350, title='Por Raça/cor da mãe',
+                     color_discrete_sequence=px.colors.sequential.Blues_r
+                     )
+gr_raca_cor.update_layout(showlegend=False)
+gr_raca_cor.update_traces(textposition='outside',
+                          textinfo='percent+label')
+
+gr_raca_cor_prop = px.bar(df_racamae.reset_index(), x='regiao', y='prop', color='racacormae',
+                          labels=dict(regiao="Região", racacormae="Raça/Cor",
+                                      prop="Proporção(%)", qtd="Nascidos"), title='Proporção por região',
+                          hover_data=['regiao', 'racacormae', 'prop', 'qtd'],
+                          color_discrete_sequence=px.colors.sequential.Blues_r,
+                          template="plotly_white", text="racacormae"
+                          )
+gr_raca_cor_prop.update_yaxes(
+    ticksuffix="%", showgrid=True)  # the y-axis is in percent
 
 ############################################################################
 ############################################################################
@@ -773,4 +800,25 @@ O número de mães com menos de 19 anos corresponde a 12% do total de nascidos v
 Quase metade dos nascidos vivos são de mães entre 20 e 29 anos.(49,2%)
 
 Mães com mais de 40 anos representam 4,33% do total.
+        """)
+
+text = """:blue[**Nascidos por raça/cor da mãe**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 5.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_raca_cor, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_raca_cor_prop, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+        No Brasil 55,5% das mães são pardas, seguidas por mães brancas com 32,9% do total de nascimentos.
+
+Na região Norte predomina as mães pardas, enquanto que no Sul, a predominancia são de mães brancas.
+
+Na região Norte encontramos a maior quantidade de mães Indigenas.
         """)
