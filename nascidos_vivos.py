@@ -170,6 +170,16 @@ df_peso = df_peso.replace({
     'ordem': dictpeso
 })
 
+
+# 3.3 Características maternas ######################################
+# 3.3.1 Nascidos vivos segundo idade da mãe
+
+# por idade
+df_idade = (df_sinasc[['faixa_etaria', 'idademae', 'qtd']]
+            [(df_sinasc['idademae'] > 0) & (df_sinasc['idademae'] < 99)]
+            ).groupby(['faixa_etaria', "idademae"])['qtd'].sum().reset_index()
+
+
 #####################################################################
 #####################################################################
 # Construção dos Gráficos
@@ -449,6 +459,28 @@ gr_peso = px.bar(df_peso.sort_values(by='ordem', ascending=True), x="faixa_peso"
 gr_peso.update_traces(textfont_size=12, textangle=0,
                       textposition="outside", cliponaxis=False)
 
+# 3.3 Características maternas ######################################
+# 3.3.1 Nascidos vivos segundo idade da mãe
+
+gr_idade_mae = px.bar(df_idade.sort_values(by='idademae', ascending=True), x="idademae", y="qtd",
+                      labels=dict(idademae="Idade Mãe",
+                                  faixa_etaria="Faixa etária", qtd="Nascidos"),
+                      hover_data=['idademae', 'faixa_etaria'],
+                      color_discrete_sequence=px.colors.sequential.Blues_r,
+                      template="plotly_white"
+                      )
+gr_idade_mae.update_xaxes(type="category")
+
+gr_faixa_etaria_mae = px.pie(df_idade, values='qtd', names='faixa_etaria',
+                             labels=dict(
+                                 faixa_etaria="Faixa etária", qtd="Nascidos"),
+                             height=350, width=350, title='Por faixa etária da mãe',
+                             color_discrete_sequence=px.colors.sequential.Blues_r
+                             )
+gr_faixa_etaria_mae.update_layout(showlegend=False)
+gr_faixa_etaria_mae.update_traces(textposition='outside',
+                                  textinfo='percent+label')
+
 
 ############################################################################
 ############################################################################
@@ -715,4 +747,30 @@ with st.expander(text, expanded=True):
     st.write(" ")
     st.markdown("""
         Em 2023, 62% dos recém-nascidos, estão na faixa de 3000 a 3999 gramas.
+        """)
+
+################################################################################################
+st.markdown("### :blue[🤰Características maternas]")
+
+
+text = """:blue[**Nascidos vivos segundo idade da mãe**]"""
+
+with st.expander(text, expanded=True):
+
+    st.plotly_chart(gr_idade_mae, use_container_width=True)
+
+    col = st.columns((3.1, 5.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_faixa_etaria_mae, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+        Mães entre 25 e 29 anos, foram as que mais fizeram partos, sendo 26 anos a idade com mais partos.
+
+O número de mães com menos de 19 anos corresponde a 12% do total de nascidos vivos em 2023.
+
+Quase metade dos nascidos vivos são de mães entre 20 e 29 anos.(49,2%)
+
+Mães com mais de 40 anos representam 4,33% do total.
         """)
