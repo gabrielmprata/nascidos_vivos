@@ -143,6 +143,32 @@ tot = sum(df_apgar1.qtd)  # Total de acessos
 df_apgar1['perc'] = ((df_apgar1['qtd']/tot)*100).round(2)
 df_apgar1.groupby(["apgar1"])['perc'].sum().reset_index()
 
+# 3.2.10 Nascidos Vivos de acordo com peso
+# por peso
+df_peso = df_sinasc.groupby(["faixa_peso"])['qtd'].sum().reset_index()
+
+df_peso = (df_sinasc[["faixa_peso", 'qtd']]
+           [(df_sinasc['faixa_peso'] != 'Ignorado')]
+           ).groupby(["faixa_peso"])['qtd'].sum().reset_index()
+
+# Criando o campo ordem com a faixa de peso
+df_peso['ordem'] = df_peso['faixa_peso']
+
+dictpeso = {
+    'Ignorado': 1,
+    '< 500': 2,
+    '500 a 999': 3,
+    '1000 a 1499': 4,
+    '1500 a 2499': 5,
+    '2500 a 2999': 6,
+    '3000 a 3999': 7,
+    '4000 a +': 8
+}
+
+# Fazer o replace nos atributos conforme o dicionario
+df_peso = df_peso.replace({
+    'ordem': dictpeso
+})
 
 #####################################################################
 #####################################################################
@@ -413,6 +439,16 @@ gr_apgar1_hs = px.bar(df_apgar1, x="ano_mes", y="qtd", color="apgar1",
                       )
 gr_apgar1_hs.update_xaxes(type="category")
 
+# 3.2.10 Nascidos Vivos de acordo com peso
+
+gr_peso = px.bar(df_peso.sort_values(by='ordem', ascending=True), x="faixa_peso", y="qtd",
+                 labels=dict(faixa_peso="Faixa de peso", qtd="Nascidos"),
+                 color_discrete_sequence=px.colors.sequential.Blues_r, text_auto='.2s',
+                 template="plotly_white"
+                 )
+gr_peso.update_traces(textfont_size=12, textangle=0,
+                      textposition="outside", cliponaxis=False)
+
 
 ############################################################################
 ############################################################################
@@ -668,4 +704,15 @@ A primeira média é dada no primeiro minuto, depois no quinto e no décimo minu
 Segundo a média, em todo o mundo, cerca de 4% dos recém-nascidos obtêm índice inferior a 7. Em alguns casos, os pequenos precisam ser encaminhados para a Unidade de Terapia Neonatal (UTI) Neonatal.
 
 Nascimento prematuro, gravidez de risco, parto cesárea, tipo de anestesia aplicada e complicações no trabalho de parto estão entre os fatores que podem afetar a pontuação.
+        """)
+
+text = """:blue[**Nascidos Vivos de acordo com peso**]"""
+
+with st.expander(text, expanded=True):
+
+    st.plotly_chart(gr_peso, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+        Em 2023, 62% dos recém-nascidos, estão na faixa de 3000 a 3999 gramas.
         """)
