@@ -188,6 +188,21 @@ df_racamae = df_sinasc.groupby(['regiao', 'racacormae']).agg({'qtd': 'count'})
 df_racamae['prop'] = (df_racamae.groupby(level=0).apply(
     lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(0)
 
+
+# 3.3.3 Nascidos vivos segundo situação conjugal da mãe
+# por estado civil
+df_estcivil = (df_sinasc[['estcivmae', 'qtd']]
+               [(df_sinasc['estcivmae'] != 'Ignorado')
+                & (df_sinasc['estcivmae'] != 'NI')]
+               ).groupby(['estcivmae'])['qtd'].sum().reset_index()
+
+# 3.3.4 Nascidos vivos segundo escolaridade da mãe
+
+# por escolaridade
+df_escmae = (df_sinasc[['escmaeagr1', 'qtd']]
+             [(df_sinasc['escmaeagr1'] != 'NI')]
+             ).groupby(['escmaeagr1'])['qtd'].sum().reset_index()
+
 #####################################################################
 #####################################################################
 # Construção dos Gráficos
@@ -509,6 +524,27 @@ gr_raca_cor_prop = px.bar(df_racamae.reset_index(), x='regiao', y='prop', color=
 gr_raca_cor_prop.update_yaxes(
     ticksuffix="%", showgrid=True)  # the y-axis is in percent
 
+
+# 3.3.3 Nascidos vivos segundo situação conjugal da mãe
+# por estado civil
+gr_estado_civil = px.pie(df_estcivil, values='qtd', names='estcivmae',
+                         labels=dict(estcivmae="Estado civil", qtd="Nascidos"),
+                         height=350, width=350,
+                         color_discrete_sequence=px.colors.sequential.Blues_r
+                         )
+gr_estado_civil.update_layout(showlegend=False)
+gr_estado_civil.update_traces(textposition='outside', textinfo='percent+label')
+
+# 3.3.4 Nascidos vivos segundo escolaridade da mãe
+gr_escola = px.pie(df_escmae, values='qtd', names='escmaeagr1',
+                   labels=dict(escmaeagr1="Escolaridade", qtd="Nascidos"),
+                   height=450, width=450,
+                   color_discrete_sequence=px.colors.sequential.Blues_r
+                   )
+gr_escola.update_layout(showlegend=False)
+gr_escola.update_traces(textposition='outside', textinfo='percent+label')
+
+
 ############################################################################
 ############################################################################
 # Dashboard Main Panel
@@ -821,4 +857,27 @@ with st.expander(text, expanded=True):
 Na região Norte predomina as mães pardas, enquanto que no Sul, a predominancia são de mães brancas.
 
 Na região Norte encontramos a maior quantidade de mães Indigenas.
+        """)
+
+text = """:blue[**Nascidos segundo estado civil e escolaridade da mãe**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 5.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_estado_civil, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_escola, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+        Metade das mães são solteiras, 51,3%.
+
+Em seguida podemos dizer que que 46,9% das mães estão em um relacionamento(Casada+União estável).
+
+Quanto a escolaridade das mães 34,5% possuem ensino médio completo, 20.9% incompleto.
+Apenas 18,9% possui ensino superior completo.
+
         """)
