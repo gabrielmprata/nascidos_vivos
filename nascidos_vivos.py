@@ -203,6 +203,17 @@ df_escmae = (df_sinasc[['escmaeagr1', 'qtd']]
              [(df_sinasc['escmaeagr1'] != 'NI')]
              ).groupby(['escmaeagr1'])['qtd'].sum().reset_index()
 
+# 3.4 Características da gestação e parto
+# 3.4.1 Nascidos vivos segundo tipo gravidez
+# por tipo gravidez
+df_gravidez = df_sinasc.groupby(["gravidez"])['qtd'].sum().reset_index()
+
+# por semana de gestação
+df_semana = (df_sinasc[["gestacao", "semagestac", 'qtd']]
+             [(df_sinasc['semagestac'] < 99)]
+             ).groupby(["gestacao", "semagestac"])['qtd'].sum().reset_index()
+
+
 #####################################################################
 #####################################################################
 # Construção dos Gráficos
@@ -405,39 +416,32 @@ gr_locnasc_prop.update_layout(legend=dict(
 ))
 
 # por tipo de gestao hospitalar df_gestao
-gr_locnasc_gestao = px.pie(df_gestao,
-                           values='qtd',
-                           names='tp_gestao',
+gr_locnasc_gestao = px.pie(df_gestao, values='qtd', names='tp_gestao',
                            labels=dict(tp_gestao="Gestão", qtd="Nascidos"),
-                           height=350,  # altura
-                           width=350,  # largura
+                           height=350, width=350,  # largura
                            color_discrete_sequence=px.colors.sequential.Blues_r
                            )
 gr_locnasc_gestao.update_layout(showlegend=False)
-gr_locnasc_gestao.update_traces(textposition='outside',
-                                textinfo='percent+label')
+gr_locnasc_gestao.update_traces(
+    textposition='outside', textinfo='percent+label')
 
 
 # 3.2.8 Nascidos Vivos com anomalias congênitas segundo região
 anom_tot = px.pie(df_anomalia_perc, values='qtd', names='idanomal',
                   labels=dict(idanomal="Anomalia?", qtd="Nascidos"),
-                  height=350,  # altura
-                  width=350,  # largura
+                  height=350, width=350,  # largura
                   color_discrete_sequence=px.colors.sequential.Blues_r
                   )
 anom_tot.update_layout(showlegend=False)
-anom_tot.update_traces(textposition='outside',
-                       textinfo='percent+label')
+anom_tot.update_traces(textposition='outside', textinfo='percent+label')
 
 anom_reg = px.pie(df_anomalia, values='qtd', names='regiao',
                   labels=dict(regiao="Região", qtd="Nascidos"),
-                  height=350,  # altura
-                  width=350,  # largura
+                  height=350, width=350,  # largura
                   color_discrete_sequence=px.colors.sequential.Blues_r
                   )
 anom_reg.update_layout(showlegend=False)
-anom_reg.update_traces(textposition='outside',
-                       textinfo='percent+label')
+anom_reg.update_traces(textposition='outside', textinfo='percent+label')
 
 
 anom_hist = px.bar(df_anomalia, x="ano_mes", y="qtd", color="regiao",
@@ -453,13 +457,11 @@ anom_hist.update_xaxes(type="category")
 
 gr_apgar1 = px.pie(df_apgar1, values='qtd', names='apgar1',
                    labels=dict(apgar1="Apgar 1", qtd="Nascidos"),
-                   height=350,  # altura
-                   width=350,  # largura
+                   height=350, width=350,  # largura
                    color_discrete_sequence=px.colors.sequential.Blues_r
                    )
 gr_apgar1.update_layout(showlegend=False)
-gr_apgar1.update_traces(textposition='outside',
-                        textinfo='percent+label')
+gr_apgar1.update_traces(textposition='outside', textinfo='percent+label')
 
 
 gr_apgar1_hs = px.bar(df_apgar1, x="ano_mes", y="qtd", color="apgar1",
@@ -501,8 +503,8 @@ gr_faixa_etaria_mae = px.pie(df_idade, values='qtd', names='faixa_etaria',
                              color_discrete_sequence=px.colors.sequential.Blues_r
                              )
 gr_faixa_etaria_mae.update_layout(showlegend=False)
-gr_faixa_etaria_mae.update_traces(textposition='outside',
-                                  textinfo='percent+label')
+gr_faixa_etaria_mae.update_traces(
+    textposition='outside', textinfo='percent+label')
 
 # Proporção segundo raça/cor da mãe por região
 gr_raca_cor = px.pie(df_raca, values='qtd', names='racacormae', hole=0.5,
@@ -511,8 +513,7 @@ gr_raca_cor = px.pie(df_raca, values='qtd', names='racacormae', hole=0.5,
                      color_discrete_sequence=px.colors.sequential.Blues_r
                      )
 gr_raca_cor.update_layout(showlegend=False)
-gr_raca_cor.update_traces(textposition='outside',
-                          textinfo='percent+label')
+gr_raca_cor.update_traces(textposition='outside', textinfo='percent+label')
 
 gr_raca_cor_prop = px.bar(df_racamae.reset_index(), x='regiao', y='prop', color='racacormae',
                           labels=dict(regiao="Região", racacormae="Raça/Cor",
@@ -523,7 +524,6 @@ gr_raca_cor_prop = px.bar(df_racamae.reset_index(), x='regiao', y='prop', color=
                           )
 gr_raca_cor_prop.update_yaxes(
     ticksuffix="%", showgrid=True)  # the y-axis is in percent
-
 
 # 3.3.3 Nascidos vivos segundo situação conjugal da mãe
 # por estado civil
@@ -543,6 +543,39 @@ gr_escola = px.pie(df_escmae, values='qtd', names='escmaeagr1',
                    )
 gr_escola.update_layout(showlegend=False)
 gr_escola.update_traces(textposition='outside', textinfo='percent+label')
+
+
+# 3.4 Características da gestação e parto
+# 3.4.1 Nascidos vivos segundo tipo gravidez
+gr_gravidez = px.pie(df_gravidez, values='qtd', names='gravidez', hole=0.5,
+                     labels=dict(gravidez="Tipo", qtd="Nascidos"),
+                     height=350, width=350,
+                     color_discrete_sequence=px.colors.sequential.Blues_r
+                     )
+# gr_gravidez.update_layout(showlegend=False)
+# gr_gravidez.update_traces(textposition='outside', textinfo='percent+label')
+
+
+gr_semanas = px.pie(df_semana, values='qtd', names='gestacao',  hole=0.5,
+                    labels=dict(gestacao="Semanas", qtd="Nascidos"),
+                    height=350, width=350,
+                    color_discrete_sequence=px.colors.sequential.Blues_r
+                    )
+# gr_semanas.update_layout(showlegend=False)
+# gr_semanas.update_traces(textposition='outside', textinfo='percent+label')
+# gr_semanas.update_layout(height=350, width=350, margin=dict(t=2, b=0, l=0, r=0))
+
+
+gr_semanas_bar = px.bar(df_semana.sort_values(by='semagestac', ascending=True), x="semagestac", y="qtd",
+                        labels=dict(semagestac="Semanas",
+                                    gestacao="Faixa", qtd="Nascidos"),
+                        hover_data=['semagestac', 'gestacao'],
+                        color_discrete_sequence=px.colors.sequential.Blues_r,  text_auto='.2s',
+                        template="plotly_white"
+                        )
+gr_semanas_bar.update_xaxes(type="category")
+gr_semanas_bar.update_traces(
+    textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
 
 
 ############################################################################
@@ -881,3 +914,27 @@ Quanto a escolaridade das mães 34,5% possuem ensino médio completo, 20.9% inco
 Apenas 18,9% possui ensino superior completo.
 
         """)
+
+
+st.markdown("### :blue[🤰Características da gestação e do parto]")
+
+
+text = """:blue[**Nascidos Vivos segundo tipo de gravidez e tempo de gestação**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 3.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_gravidez, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_semanas, use_container_width=True)
+
+    st.plotly_chart(gr_semanas_bar, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+        No Brasil, cerca de 98% dos nascidos vivos, são de getações únicas, e apenas 2% são de gemêos.
+        Cerca de 86% dos partos são realizados entre a 37º e a 41º semana de gestação.
+                """)
