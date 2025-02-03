@@ -213,6 +213,28 @@ df_semana = (df_sinasc[["gestacao", "semagestac", 'qtd']]
              [(df_sinasc['semagestac'] < 99)]
              ).groupby(["gestacao", "semagestac"])['qtd'].sum().reset_index()
 
+# por idade gestacional
+df_gestacional = (df_sinasc[["gestacao", "regiao", 'qtd']]
+                  [(df_sinasc['semagestac'] < 99)]
+                  ).groupby(["gestacao", "regiao"])['qtd'].sum().reset_index()
+
+# Incluindo a idade gestacional na faixa de semanas
+df_gestacional['gestacional'] = df_gestacional['gestacao']
+
+dictgestacao = {
+
+    "22 a 27 semanas": "Prematuro muito extremo (22 a 27 semanas)",
+    "28 a 31 semanas": "Prematuro extremo (28 a 31 semanas)",
+    "32 a 36 semanas": "Prematuro leve (32 a 36 semanas)",
+    "37 a 41 semanas": "A termo (37 a 41 semanas)",
+    "42 semanas e mais": "Pós-termo (42 semanas ou mais)"
+}
+
+# Fazer o replace nos atributos conforme o dicionario
+df_gestacional = df_gestacional.replace({
+    'gestacional': dictgestacao
+})
+
 
 #####################################################################
 #####################################################################
@@ -577,6 +599,13 @@ gr_semanas_bar.update_xaxes(type="category")
 gr_semanas_bar.update_traces(
     textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
 
+gr_gestacional = px.bar(df_gestacional, x="regiao", y="qtd", color="gestacional",
+                        labels=dict(
+                            regiao="Região", gestacional="Idade gestacional", qtd="Nascidos"),
+                        title='Idade gestacional por região',
+                        color_discrete_sequence=px.colors.sequential.Blues_r,
+                        template="plotly_white"
+                        )
 
 ############################################################################
 ############################################################################
@@ -936,5 +965,25 @@ with st.expander(text, expanded=True):
     st.write(" ")
     st.markdown("""
         No Brasil, cerca de 98% dos nascidos vivos, são de getações únicas, e apenas 2% são de gemêos.
+
         Cerca de 86% dos partos são realizados entre a 37º e a 41º semana de gestação.
+                """)
+    st.write(" ")
+    st.plotly_chart(gr_gestacional, use_container_width=True)
+
+text = """:blue[**Nascidos Vivos segundo consultas pré-natal**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 3.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_gravidez, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_semanas, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+        
                 """)
