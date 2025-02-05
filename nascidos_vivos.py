@@ -236,6 +236,38 @@ df_gestacional = df_gestacional.replace({
 })
 
 
+# 3.4.3 Nascidos vivos segundo consultas pré-natal
+# por consultas
+df_consultas = (df_sinasc[["consultas", "regiao", "qtd"]]
+                [(df_sinasc["consultas"] != "Ignorado")]
+                ).groupby(["consultas", "regiao"])['qtd'].sum().reset_index()
+
+
+# Criando o campo ordem com a faixa de peso
+df_consultas['ordem'] = df_consultas['consultas']
+
+dictconsultas = {
+    "Nenhuma":  1,
+    "de 1 a 3": 2,
+    "de 4 a 6": 3,
+    "7 e mais": 4,
+    "Ignorado": 5
+}
+
+# Fazer o replace nos atributos conforme o dicionario
+df_consultas = df_consultas.replace({
+    'ordem': dictconsultas
+})
+
+# por regiao e consultas
+df_consultas_prop = df_sinasc.groupby(
+    ['regiao', 'consultas']).agg({'qtd': 'count'})
+
+# Calcula a proporção em percentual agrupado por regiao
+df_consultas_prop['prop'] = (df_consultas_prop.groupby(level=0).apply(
+    lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(0)
+
+
 #####################################################################
 #####################################################################
 # Construção dos Gráficos
@@ -607,6 +639,34 @@ gr_gestacional = px.bar(df_gestacional, x="regiao", y="qtd", color="gestacional"
                         template="plotly_white"
                         )
 
+# 3.4.3 Nascidos vivos segundo consultas pré-natal
+gr_consultas = px.pie(df_consultas, values='qtd', names='consultas', hole=0.5,
+                      labels=dict(consultas="Consultas", qtd="Nascidos"),
+                      height=350,  # altura
+                      width=350,
+                      color_discrete_sequence=px.colors.sequential.Blues_r
+                      )
+gr_consultas.update_layout(showlegend=False)
+gr_consultas.update_traces(textposition='outside', textinfo='percent+label')
+
+# Total nascidos
+gr_consultas_reg = px.bar(df_consultas.sort_values(by='ordem', ascending=True), x="regiao", y="qtd", color='consultas', barmode='group',
+                          labels=dict(consultas="Consultas",
+                                      regiao="Região", qtd="Nascidos"),
+                          color_discrete_sequence=px.colors.sequential.Blues_r,
+                          template="plotly_white"
+                          )
+
+gr_consultas_prop = px.bar(df_consultas_prop.reset_index(), x='regiao', y='prop', color='consultas',
+                           labels=dict(regiao="Região", consultas="Consultas",
+                                       prop="Proporção(%)", qtd="Nascidos"),
+                           title='Proporção por região',
+                           hover_data=['regiao', 'consultas', 'prop', 'qtd'],
+                           color_discrete_sequence=px.colors.sequential.Blues_r,
+                           template="plotly_white", text="consultas"
+                           )
+
+
 ############################################################################
 ############################################################################
 # Dashboard Main Panel
@@ -940,6 +1000,7 @@ with st.expander(text, expanded=True):
 Em seguida podemos dizer que que 46,9% das mães estão em um relacionamento(Casada+União estável).
 
 Quanto a escolaridade das mães 34,5% possuem ensino médio completo, 20.9% incompleto.
+
 Apenas 18,9% possui ensino superior completo.
 
         """)
@@ -975,15 +1036,24 @@ text = """:blue[**Nascidos Vivos segundo consultas pré-natal**]"""
 
 with st.expander(text, expanded=True):
 
-    col = st.columns((3.1, 3.3), gap='medium')
+    col = st.columns((3.1, 5.3), gap='medium')
 
     with col[0]:
-        st.plotly_chart(gr_gravidez, use_container_width=True)
+        st.plotly_chart(gr_consultas, use_container_width=True)
 
     with col[1]:
-        st.plotly_chart(gr_semanas, use_container_width=True)
+        st.plotly_chart(gr_consultas_reg, use_container_width=True)
+
+    st.write(" ")
+    st.plotly_chart(gr_consultas_prop, use_container_width=True)
 
     st.write(" ")
     st.markdown("""
-        
+        Um grande avanço na saúde das mães e dos bebês, é o acesso ao pré-natal, onde registramos 77,5% de mães com 7 ou mais consultas pré-natal, considerado "Mais do que adequado" e 16,6% considerado como "Adequado", totalizando 94,1%.
+
+Em 2015 70,2% das mulheres tiveram acesso ao pré-natal, somando “Mais que adequado” e “Adequado”.
+
+Um grande salto na melhoria ao acompanhamento das futuras mamães.
+
+A região Norte é a que está mais abaixo da média nacional, alcançando apenas 62% das mães, e em 2015 o percentual era de 53,1%.
                 """)
