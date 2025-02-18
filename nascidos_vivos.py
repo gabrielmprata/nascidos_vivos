@@ -280,6 +280,16 @@ df_parto_prop = df_sinasc.groupby(['regiao', 'parto']).agg({'qtd': 'count'})
 df_parto_prop['prop'] = (df_parto_prop.groupby(level=0).apply(
     lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(1)
 
+# 3.4.5 Nascidos vivos segundo assistência
+
+# por regiao e consultas
+df_tpnascassi_prop = df_sinasc.groupby(
+    ['regiao', 'tpnascassi']).agg({'qtd': 'count'})
+
+# Calcula a proporção em percentual agrupado por regiao
+df_tpnascassi_prop['prop'] = (df_tpnascassi_prop.groupby(level=0).apply(
+    lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(0)
+
 #####################################################################
 #####################################################################
 # Construção dos Gráficos
@@ -697,6 +707,24 @@ gr_parto_reg = px.bar(df_parto_prop.reset_index(), x='regiao', y='prop', color='
                       template="plotly_white", text="prop"
                       )
 
+# 3.4.5 Nascidos vivos segundo assistência
+
+gr_assis = px.pie(df_tpnascassi_prop.reset_index(), values='qtd', names='tpnascassi', hole=0.7,
+                  labels=dict(tpnascassi="Assistente", qtd="Nascidos"), height=350, width=350,
+                  color_discrete_sequence=px.colors.sequential.Blues_r
+                  )
+gr_assis.update_layout(showlegend=False, margin=dict(t=40, b=0, l=20, r=20))
+gr_assis.update_traces(textposition='outside',
+                       textinfo='percent+label')
+
+gr_assis_prop = px.bar(df_tpnascassi_prop.reset_index(), x='regiao', y='prop', color='tpnascassi',
+                       labels=dict(regiao="Região", tpnascassi="",
+                                   prop="Proporção(%)", qtd="Nascidos"),
+                       # hover_data=['regiao', 'consultas','prop','qtd'],
+                       color_discrete_sequence=px.colors.sequential.Blues_r,
+                       template="plotly_white", text="tpnascassi"
+                       )
+
 ############################################################################
 ############################################################################
 # Dashboard Main Panel
@@ -1107,4 +1135,24 @@ with st.expander(text, expanded=True):
 A região centro-oeste tem a maior proporção de cesárias, seguida da região Sul.
 
 No Norte, a proporção de cesárias é menor entre as regiões.
+                """)
+
+
+text = """:blue[**Nascidos Vivos segundo assistência**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 5.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_assis, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_assis_prop, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+    Nossos recém-nascidos chegam ao mundo, na grande maioria das regiões, pelas mãos de médicos.
+
+A região Norte, é a que mais registra nascimentos assistidos por enfermagem e por parteiras.
                 """)
