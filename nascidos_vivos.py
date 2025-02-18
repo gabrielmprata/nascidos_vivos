@@ -267,6 +267,18 @@ df_consultas_prop = df_sinasc.groupby(
 df_consultas_prop['prop'] = (df_consultas_prop.groupby(level=0).apply(
     lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(0)
 
+# 3.4.4 Nascidos vivos por tipo de parto e ano mês
+# por tipo de parto
+df_parto = (df_sinasc[["parto", "qtd"]]
+            [(df_sinasc["parto"] != "Ignorado")]
+            ).groupby(["parto"])['qtd'].sum().reset_index()
+
+# por tipo de parto e região
+df_parto_prop = df_sinasc.groupby(['regiao', 'parto']).agg({'qtd': 'count'})
+
+# Calcula a proporção em percentual agrupado por regiao
+df_parto_prop['prop'] = (df_parto_prop.groupby(level=0).apply(
+    lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(1)
 
 #####################################################################
 #####################################################################
@@ -666,6 +678,24 @@ gr_consultas_prop = px.bar(df_consultas_prop.reset_index(), x='regiao', y='prop'
                            template="plotly_white", text="consultas"
                            )
 
+# 3.4.4 Nascidos vivos por tipo de parto e ano mês
+
+gr_parto = px.pie(df_parto, values='qtd', names='parto', hole=0.7,
+                  # largura
+                  labels=dict(parto="Parto", qtd="Nascidos"), height=350, width=350,
+                  color_discrete_sequence=px.colors.sequential.Blues_r
+                  )
+gr_parto.update_layout(showlegend=False)
+gr_parto.update_traces(textposition='outside',
+                       textinfo='percent+label')
+
+gr_parto_reg = px.bar(df_parto_prop.reset_index(), x='regiao', y='prop', color='parto',
+                      labels=dict(regiao="Região", df_parto_prop="Parto",
+                                  prop="Proporção(%)", qtd="Nascidos"),
+                      # hover_data=['regiao', 'consultas','prop','qtd'],
+                      color_discrete_sequence=px.colors.sequential.Blues_r,
+                      template="plotly_white", text="prop"
+                      )
 
 ############################################################################
 ############################################################################
@@ -1056,4 +1086,25 @@ Em 2015 70,2% das mulheres tiveram acesso ao pré-natal, somando “Mais que ade
 Um grande salto na melhoria ao acompanhamento das futuras mamães.
 
 A região Norte é a que está mais abaixo da média nacional, alcançando apenas 62% das mães, e em 2015 o percentual era de 53,1%.
+                """)
+
+text = """:blue[**Nascidos Vivos por tipo de parto**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 5.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_parto, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_parto_reg, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+    A Maioria dos partos são feitos por cesária.
+
+A região centro-oeste tem a maior proporção de cesárias, seguida da região Sul.
+
+No Norte, a proporção de cesárias é menor entre as regiões.
                 """)
