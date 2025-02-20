@@ -290,6 +290,9 @@ df_tpnascassi_prop = df_sinasc.groupby(
 df_tpnascassi_prop['prop'] = (df_tpnascassi_prop.groupby(level=0).apply(
     lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(0)
 
+# 3.4.6 Nascidos vivos segundo Grupos de Robson
+
+
 #####################################################################
 #####################################################################
 # Construção dos Gráficos
@@ -725,6 +728,48 @@ gr_assis_prop = px.bar(df_tpnascassi_prop.reset_index(), x='regiao', y='prop', c
                        template="plotly_white", text="tpnascassi"
                        )
 
+# 3.4.8 Nascidos vivos segundo número de filhos anteriores
+df_gestant = (df_sinasc[['regiao', "qtdgestant", 'qtd']]
+              ).groupby(['regiao', "qtdgestant"])['qtd'].sum().reset_index()
+
+# Cria o atributo com as idades
+df_gestant['faixa_gestant'] = df_gestant['qtdgestant']
+
+# Range das faixas
+classes = [-1, 0, 1, 2, 98, 500]
+
+# Nome das faixas
+labels = ['Zero', 'Um', 'Dois', 'Três ou mais', 'Ignorado']
+
+# Aplica faixas
+classes = pd.cut(x=df_gestant.faixa_gestant, bins=classes, labels=labels)
+df_gestant['faixa_gestant'] = classes
+
+# Como o tipo é category, vamos transformar em STR
+df_gestant['faixa_gestant'] = df_gestant['faixa_gestant'].astype(str)
+
+# 3.4.8 Nascidos vivos segundo número de filhos anteriores
+gr_gestant = px.pie(df_gestant, values='qtd', names='faixa_gestant', hole=0.7,
+                    labels=dict(faixa_gestant="Faixa", qtd="Nascidos"), height=350, width=350,
+                    color_discrete_sequence=px.colors.sequential.Blues_r
+                    )
+gr_gestant.update_layout(showlegend=False, margin=dict(t=40, b=0, l=20, r=20))
+gr_gestant.update_traces(textposition='outside',
+                         textinfo='percent+label')
+
+gr_gestant_bar = px.bar(df_gestant.groupby(["regiao", 'faixa_gestant'])['qtd'].sum().reset_index(), x="regiao", y="qtd", color='faixa_gestant', barmode='group',
+                        category_orders={"faixa_gestant": [
+                            "Zero", "Um", "Dois", "Três ou mais", "Ignorado"]},
+                        labels=dict(faixa_gestant="",
+                                    regiao="Região", qtd="Nascidos"),
+                        color_discrete_sequence=px.colors.sequential.Blues_r,
+                        template="plotly_white"
+                        )
+
+
+# 3.4.6 Nascidos vivos segundo Grupos de Robson
+
+
 ############################################################################
 ############################################################################
 # Dashboard Main Panel
@@ -1155,4 +1200,26 @@ with st.expander(text, expanded=True):
     Nossos recém-nascidos chegam ao mundo, na grande maioria das regiões, pelas mãos de médicos.
 
 A região Norte, é a que mais registra nascimentos assistidos por enfermagem e por parteiras.
+                """)
+
+
+text = """:blue[**Nascidos vivos segundo número de filhos anteriores**]"""
+
+with st.expander(text, expanded=True):
+
+    col = st.columns((3.1, 5.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_gestant, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_gestant_bar, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+    No Brasil 35% das mães são de primeira viagem, seguida de 29% de mães que já possuem um filho, e de 17% de mães com dois filhos.
+
+Esse comportamento se repete em todas as regiões.
+
+
                 """)
