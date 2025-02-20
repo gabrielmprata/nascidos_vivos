@@ -292,6 +292,28 @@ df_tpnascassi_prop['prop'] = (df_tpnascassi_prop.groupby(level=0).apply(
 
 # 3.4.6 Nascidos vivos segundo Grupos de Robson
 
+# por grupo de Robson
+df_tprobson = df_sinasc.groupby(["ano_mes", "gr_robson"])[
+    'qtd'].sum().reset_index()
+
+# por gruo de Robson e região
+df_tprobson_reg = df_sinasc.loc[df_sinasc.tprobson < 11].groupby(
+    ['regiao', 'tprobson']).agg({'qtd': 'count'})
+
+# Calcula a proporção em percentual agrupado por UF
+df_tprobson_reg['prop'] = (df_tprobson_reg.groupby(level=0).apply(
+    lambda x: 100*x/x.sum()).reset_index(level=0, drop=True)).round(1)
+
+df_tprobson_reg = df_tprobson_reg.reset_index()
+
+# Criando o campo ordem com os grupos (se usar o campo do tipo inteiro, o gráfico não ficará com a legenda por grupo)
+df_tprobson_reg['ordem'] = df_tprobson_reg['tprobson']
+
+dicescmaeagr1 = {1: "Grupo 1", 2: "Grupo 2", 3: "Grupo 3", 4: "Grupo 4", 5: "Grupo 5",
+                 6: "Grupo 6", 7: "Grupo 7", 8: "Grupo 8", 9: "Grupo 9", 10: "Grupo 10"}
+# Fazer o replace nos atributos conforme o dicionario
+df_tprobson_reg = df_tprobson_reg.replace({'ordem': dicescmaeagr1})
+
 
 #####################################################################
 #####################################################################
@@ -768,7 +790,30 @@ gr_gestant_bar = px.bar(df_gestant.groupby(["regiao", 'faixa_gestant'])['qtd'].s
 
 
 # 3.4.6 Nascidos vivos segundo Grupos de Robson
+gr_tprobson = px.bar(df_tprobson.reset_index(), x='ano_mes', y='qtd', color='gr_robson',
+                     labels=dict(ano_mes="Ano/Mês",
+                                 gr_robson="", qtd="Nascidos"),
+                     category_orders={"gr_robson": ["Grupos 1 a 4 - maior chance de parto vaginal", "Grupo 5 - alguma chance de parto vaginal",
+                                                    "Grupos 6 a 10 - menor chance de parto vaginal", "Ignorado"]
+                                      },
+                     color_discrete_sequence=px.colors.sequential.Blues_r,
+                     template="plotly_white",  # text="racacormae"
+                     )
+gr_tprobson.update_xaxes(type="category", title=None)
+gr_tprobson.update_layout(legend=dict(
+    yanchor="top",
+    y=-0.1,
+    xanchor="left",
+    x=0.01
+))
 
+gr_tprobson_reg = px.bar(df_tprobson_reg, x='regiao', y='prop', color='ordem',
+                         labels=dict(regiao="Região", tprobson="Classificacao de Robson",
+                                     prop="Proporção(%)", qtd="Nascidos"),
+                         hover_data=['regiao', 'tprobson', 'prop', 'qtd'],
+                         color_discrete_sequence=px.colors.sequential.Blues_r,
+                         template="plotly_white", text="prop"
+                         )
 
 ############################################################################
 ############################################################################
@@ -1222,4 +1267,51 @@ with st.expander(text, expanded=True):
 Esse comportamento se repete em todas as regiões.
 
 
+                """)
+
+text = """:blue[**Nascidos vivos segundo Grupos de Robson**]"""
+
+with st.expander(text, expanded=True):
+
+    st.markdown("""
+    **Classificação de Robson** serve para contribuir com a análise da taxa de cesarianas realizadas, bem como seu aumento ou diminuição de acordo com os grupos propostos.
+
+A planilha de Classificação de Robson deve ser utilizada pelo gestor local. O preenchimento adequado dessa planilha ajudará a analisar o panorama que se tem no que diz respeito às taxas de cesárea e sua indicação.
+
+1 - Nulípara, feto único, cefálico, ≥ 37 semanas, trabalho de parto (TP) espontâneo
+
+2 - Nulípara, feto único, cefálico, ≥ 37 semanas, induzido ou cesárea fora do TP
+
+3 - Multípara sem cesárea anterior, feto único, cefálico, ≥ 37 semanas, TP espontâneo
+
+4 - Multípara sem cesárea anterior, feto único, cefálico, ≥ 37 semanas, TP induzido ou cesárea fora do TP
+
+5 - Multípara com cesárea prévia, feto único, cefálico, ≥ 37 semanas
+
+6 - Todas as nulíparas com apresentação pélvica
+
+7 - Todas as multíparas com apresentação pélvica (incluindo com cesárea prévia)
+
+8 - Todas as gestações múltiplas (incluindo com cesárea prévia)
+
+9 - Todas as gestações córmicas ou oblíquas (incluindo com cesárea prévia)
+
+10 - Gestação única, feto cefálico, ≤ 36 semanas (inclusive com cesárea prévia)
+                """)
+
+    col = st.columns((4.1, 4.3), gap='medium')
+
+    with col[0]:
+        st.plotly_chart(gr_tprobson, use_container_width=True)
+
+    with col[1]:
+        st.plotly_chart(gr_tprobson_reg, use_container_width=True)
+
+    st.write(" ")
+    st.markdown("""
+    No gráfico, percebe-se que os nascimentos classificados nos grupos de 1 a 4 (nos quais o risco de cesárea é teoricamente menor) representa cerca 60% do total de nascimentos.
+
+Já o grupo 5 (com antecedente de cesárea, gestação única, cefálica, ≥37 semanas) representa cerca de 25%.
+
+Assim, constata-se que os grupos de 1 a 5 concentram 85% dos nascimentos.
                 """)
