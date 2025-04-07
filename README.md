@@ -11,7 +11,8 @@ Sistema de Informações sobre Nascidos Vivos (SINASC)
 <br>
 
 ## 🖥️ Demo App
-
+<br><br>
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://nascidos-vivos.streamlit.app/)
 # :radio_button: Objetivo 
 Criar um simples Dashboard em **Python** e **Streamlit**, para mostrar caractéristicas do nascimento, destacando caractéristicas das mães, dos recém-nascidos, distribuição geográficas e socioeconômicas.
 
